@@ -10,6 +10,9 @@ function App() {
   ])
 
   function handleTextChange(e, index) {
+    e.target.style.height = "0px"
+    e.target.style.height = `${e.target.scrollHeight}px`
+    
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate[index].data = e.target.value
     console.log(window.getComputedStyle(e.target).getPropertyValue("height"))
@@ -28,7 +31,7 @@ function App() {
       textDecoration: data[index].category.isChecked ? "line-through" : "none",
       margin: "0px",
       height : "auto",
-      // lineHeight : "16px"
+      resize : "none"
     }
   }
 
@@ -43,7 +46,7 @@ function App() {
             </div>
           )
         }
-        return <textarea key={index} value={data[index].data} onChange={(e) => handleTextChange(e,index)} />
+        return <textarea style={{resize : "none"}} key={index} value={data[index].data} onChange={(e) => handleTextChange(e,index)} />
       })}
     </>
   )
