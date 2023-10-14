@@ -13,7 +13,7 @@ function App() {
     if (e.key === "Enter" && e.ctrlKey) {
       const preText = data[index].data.slice(0,e.target.selectionStart)
       const postText = data[index].data.slice(e.target.selectionStart)
-      createNewElement(index+1, preText , postText )
+      createNewElement(index+1, postText, preText)
       console.log("Ctrl + Enter was pressed!!")
     }
   }
