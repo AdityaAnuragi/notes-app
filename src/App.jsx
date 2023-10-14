@@ -3,16 +3,31 @@ import { useLayoutEffect, useState } from "react"
 function App() {
 
   const [data, setData] = useState([
-    { category: { isCheckBox: false, isChecked: false } , data: "first word\nsecond word"},
+    { category: { isCheckBox: false, isChecked: false } , data: "first\nsecond"},
     { category: { isCheckBox: true, isChecked: false } , data: "This is a checkbox" },
     { category: { isCheckBox: true, isChecked: true } , data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false } , data: "First line\nSecond line"}
   ])
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e,index) {
     if (e.key === "Enter" && e.ctrlKey) {
+      const preText = data[index].data.slice(0,e.target.selectionStart)
+      const postText = data[index].data.slice(e.target.selectionStart)
+      createNewElement(index+1, preText , postText )
       console.log("Ctrl + Enter was pressed!!")
     }
+  }
+
+  function createNewElement(index = -1,value = "", preText = "") {
+    const duplicate = JSON.parse(JSON.stringify(data))
+    
+    if(index !== -1) {
+      duplicate[index-1].data = preText
+    }
+
+    const elementArr = { category: { isCheckBox: false, isChecked: false } , data: value}
+    duplicate.splice(index,0,elementArr)
+    setData(duplicate)
   }
 
   function handleTextChange(e, index) {
@@ -47,7 +62,7 @@ function App() {
       collection[i].style.height = "0px"
       collection[i].style.height = `${collection[i].scrollHeight}px`
     }
-  },[])
+  },[data])
 
   return (
     <>
@@ -56,11 +71,11 @@ function App() {
           return (
             <div key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={handleKeyDown} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
             </div>
           )
         }
-        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={handleKeyDown} />
+        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
       })}
     </>
   )
