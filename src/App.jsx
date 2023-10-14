@@ -75,7 +75,7 @@ function App() {
             </div>
           )
         }
-        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
+        return <textarea style={{resize : "none",display : "block"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
       })}
     </>
   )
