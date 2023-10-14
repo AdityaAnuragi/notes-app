@@ -9,6 +9,11 @@ function App() {
     { category: { isCheckBox: false, isChecked: false } , data: "First line\nSecond line"}
   ])
 
+  function handleKeyDown(e) {
+    if (e.key === "Enter" && e.ctrlKey) {
+      console.log("Ctrl + Enter was pressed!!")
+    }
+  }
 
   function handleTextChange(e, index) {
     e.target.style.height = "0px"
@@ -16,7 +21,7 @@ function App() {
 
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate[index].data = e.target.value
-    console.log(window.getComputedStyle(e.target).getPropertyValue("height"))
+    // console.log(window.getComputedStyle(e.target).getPropertyValue("height"))
     setData(duplicate)
   }
 
@@ -51,11 +56,11 @@ function App() {
           return (
             <div key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={handleKeyDown} />
             </div>
           )
         }
-        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} />
+        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={handleKeyDown} />
       })}
     </>
   )
