@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 
 function App() {
 
@@ -9,10 +9,11 @@ function App() {
     { category: { isCheckBox: false, isChecked: false } , data: "First line\nSecond line"}
   ])
 
+
   function handleTextChange(e, index) {
     e.target.style.height = "0px"
     e.target.style.height = `${e.target.scrollHeight}px`
-    
+
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate[index].data = e.target.value
     console.log(window.getComputedStyle(e.target).getPropertyValue("height"))
@@ -35,6 +36,14 @@ function App() {
     }
   }
 
+  useLayoutEffect(() => {
+    const collection = document.getElementsByClassName("textarea")
+    for (let i = 0; i < collection.length ; i+=1) {
+      collection[i].style.height = "0px"
+      collection[i].style.height = `${collection[i].scrollHeight}px`
+    }
+  },[])
+
   return (
     <>
       {data.map((element, index) => {
@@ -42,11 +51,11 @@ function App() {
           return (
             <div key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} onChange={(e) => handleTextChange(e,index)} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} />
             </div>
           )
         }
-        return <textarea style={{resize : "none"}} key={index} value={data[index].data} onChange={(e) => handleTextChange(e,index)} />
+        return <textarea style={{resize : "none"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} />
       })}
     </>
   )
