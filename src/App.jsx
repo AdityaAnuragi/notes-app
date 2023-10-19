@@ -50,8 +50,8 @@ function App() {
     return {
       color: data[index].category.isChecked ? "grey" : "black",
       textDecoration: data[index].category.isChecked ? "line-through" : "none",
-      margin: "0px",
-      height : "auto",
+      // margin: "0px",
+      // height : "auto",
       resize : "none"
     }
   }
