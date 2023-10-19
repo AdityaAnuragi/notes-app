@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
+import "./App.css"
 
 function App() {
 
@@ -8,6 +9,8 @@ function App() {
     { category: { isCheckBox: true, isChecked: true } , data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false } , data: "First line\nSecond line"}
   ])
+
+  const wasAddButtonClicked = useRef(false)
 
   function handleKeyDown(e,index) {
     if (e.key === "Enter" && e.ctrlKey) {
@@ -31,8 +34,8 @@ function App() {
   }
 
   function handleTextChange(e, index) {
-    e.target.style.height = "0px"
-    e.target.style.height = `${e.target.scrollHeight}px`
+    // e.target.style.height = "0px"
+    // e.target.style.height = `${e.target.scrollHeight}px`
 
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate[index].data = e.target.value
@@ -50,9 +53,24 @@ function App() {
     return {
       color: data[index].category.isChecked ? "grey" : "black",
       textDecoration: data[index].category.isChecked ? "line-through" : "none",
-      // margin: "0px",
-      // height : "auto",
-      resize : "none"
+    }
+  }
+
+  function handleButtonClick() {
+    const duplicate = JSON.parse(JSON.stringify(data))
+    duplicate.push({ category: { isCheckBox: false, isChecked: false } , data: ""})
+    wasAddButtonClicked.current = true
+    setData(duplicate)
+  }
+
+  function handleTextAreaClick(e) {
+    console.log("text area clicked")
+  }
+
+  function callbackForRef(node,index) {
+    if (index === data.length-1 && node && wasAddButtonClicked.current) {
+      node.focus()
+      wasAddButtonClicked.current = false
     }
   }
 
@@ -60,24 +78,29 @@ function App() {
     const collection = document.getElementsByClassName("textarea")
     for (let i = 0; i < collection.length ; i+=1) {
       collection[i].style.height = "0px"
-      collection[i].style.height = `${collection[i].scrollHeight}px`
+      collection[i].style.height = `${(collection[i].scrollHeight)+4}px`
     }
   },[data])
 
   return (
-    <>
+    <div id="individualNoteContainer" >
       {data.map((element, index) => {
         if (element.category.isCheckBox) {
           return (
-            <div key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
+            <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} onClick={handleTextAreaClick} />
             </div>
           )
         }
-        return <textarea style={{resize : "none",display : "block"}} key={index} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
+        return (
+          <div className="textAreaContainer" key={index} >
+            <textarea style={{resize : "none",display : "block"}}  value={data[index].data} className="textarea" ref={(node) => callbackForRef(node,index)} onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} onClick={handleTextAreaClick} />
+          </div>
+        )
       })}
-    </>
+      <button onClick={handleButtonClick} > + Add list item</button>
+    </div>
   )
 
 }
