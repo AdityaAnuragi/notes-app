@@ -63,10 +63,6 @@ function App() {
     setData(duplicate)
   }
 
-  function handleTextAreaClick(e) {
-    console.log("text area clicked")
-  }
-
   function callbackForRef(node,index) {
     if (index === data.length-1 && node && wasAddButtonClicked.current) {
       node.focus()
@@ -89,13 +85,13 @@ function App() {
           return (
             <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} onClick={handleTextAreaClick} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
             </div>
           )
         }
         return (
           <div className="textAreaContainer" key={index} >
-            <textarea style={{resize : "none",display : "block"}}  value={data[index].data} className="textarea" ref={(node) => callbackForRef(node,index)} onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} onClick={handleTextAreaClick} />
+            <textarea style={{resize : "none",display : "block"}}  value={data[index].data} className="textarea" ref={(node) => callbackForRef(node,index)} onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
           </div>
         )
       })}
