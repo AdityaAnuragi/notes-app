@@ -8,9 +8,10 @@
 
 textarea {
   resize: none;
-  width: 100%;
+  width: max-content;
   padding: 0px;
   border: none;
+  /* border: 2px solid red; */
 }
 
 textarea:focus-visible {
@@ -18,7 +19,7 @@ textarea:focus-visible {
   border-color : rgba(0,0,0,1);
 }
 
-button {
+#addNewItemButton {
   width: 100%;
 }
 
@@ -31,4 +32,12 @@ button {
 
 .textAreaContainer:has(textarea:focus-visible) {
   border-color: rgba(0,0,0,1);
+}
+
+.deleteButton {
+  opacity: 0;
+}
+
+.textAreaContainer:focus-within .deleteButton {
+  opacity: 1;
 }

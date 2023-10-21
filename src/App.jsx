@@ -70,6 +70,12 @@ function App() {
     }
   }
 
+  function deleteElement(index) {
+    const duplicate = JSON.parse(JSON.stringify(data))
+    duplicate.splice(index,1)
+    setData(duplicate)
+  }
+
   useLayoutEffect(() => {
     const collection = document.getElementsByClassName("textarea")
     for (let i = 0; i < collection.length ; i+=1) {
@@ -86,16 +92,18 @@ function App() {
             <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
               <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
+              <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
             </div>
           )
         }
         return (
-          <div className="textAreaContainer" key={index} >
+          <div className="textAreaContainer" key={index} style={{display : "flex", alignItems : "flex-start", justifyContent : "space-between" }} >
             <textarea style={{resize : "none",display : "block"}}  value={data[index].data} className="textarea" ref={(node) => callbackForRef(node,index)} onChange={(e) => handleTextChange(e,index)} onKeyDown={(e) => handleKeyDown(e,index)} />
+            <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
           </div>
         )
       })}
-      <button onClick={handleButtonClick} > + Add list item</button>
+      <button id="addNewItemButton" onClick={handleButtonClick} > + Add list item</button>
     </div>
   )
 
