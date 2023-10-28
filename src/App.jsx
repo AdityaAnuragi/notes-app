@@ -85,11 +85,11 @@ function App() {
   }
 
   function callbackForRef(node, index) {
-    if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) {
+    if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
       handleFocusOnLastElementWithAddButtonClick(node)
     }
 
-    if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === index && node) {
+    if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === index && node) { // focus on the element that comes after the element that was just deleted (else if condition if the last element was deleted)
       node?.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
@@ -98,7 +98,7 @@ function App() {
       addListItemTextArea.focus()
     }
 
-    if(indexOfElementCtrlSlashed.current === index && node) {
+    if(indexOfElementCtrlSlashed.current === index && node) { // focus on the element that was toggled from having a checkbox or not
       node?.focus()
       node?.setSelectionRange(node.value.length,node.value.length)
       indexOfElementCtrlSlashed.current = false
