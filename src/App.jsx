@@ -90,6 +90,7 @@ function App() {
     if(indexOfElementCtrlSlashed.current === index && node) {
       console.log(indexOfElementCtrlSlashed.current)
       node?.focus()
+      node?.setSelectionRange(node.value.length,node.value.length)
       indexOfElementCtrlSlashed.current = false
     }
 
