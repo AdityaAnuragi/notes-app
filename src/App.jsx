@@ -71,7 +71,7 @@ function App() {
     }
   }
 
-  function handleButtonClick(e) {
+  function handleAddListItem(e) {
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate.push({ category: { isCheckBox: false, isChecked: false }, data: `${e.target.value}` })
     wasListItemTextAreaUsed.current = true
@@ -141,7 +141,7 @@ function App() {
         )
       })}
       <div className="textAreaContainer">
-        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" value="" onChange={handleButtonClick} />
+        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" value="" onChange={handleAddListItem} />
       </div>
     </div>
   )
