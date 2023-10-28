@@ -10,8 +10,9 @@ function App() {
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
 
-  const wasAddButtonClicked = useRef(false)
-  const indexOfElementCtrlSlashed = useRef(false)
+  const wasAddButtonClicked = useRef(false) // this holds the boolean value to represent if "+ Add list item" button was recently clicked
+  const indexOfElementCtrlSlashed = useRef(false) // this holds the index of the element that was Ctrl slashed
+  const indexOfElementToFocusAfterCtrlEnter = useRef(false) // holds the index value of element focus after Ctrl + Enter
 
   function handleCtrlEnter(e, index) {
     const preText = data[index].data.slice(0, e.target.selectionStart)
@@ -27,6 +28,7 @@ function App() {
 
   function handleKeyDown(e, index) {
     if (e.key === "Enter" && e.ctrlKey) {
+      indexOfElementToFocusAfterCtrlEnter.current = index+1
       handleCtrlEnter(e,index)
     }
     else if(e.key === "/" && e.ctrlKey) {
@@ -87,8 +89,12 @@ function App() {
       handleFocusOnLastElementWithAddButtonClick(node)
     }
 
+    if (indexOfElementToFocusAfterCtrlEnter.current === index && node) {
+      node?.focus()
+      indexOfElementToFocusAfterCtrlEnter.current = false
+    }
+
     if(indexOfElementCtrlSlashed.current === index && node) {
-      console.log(indexOfElementCtrlSlashed.current)
       node?.focus()
       node?.setSelectionRange(node.value.length,node.value.length)
       indexOfElementCtrlSlashed.current = false
