@@ -49,7 +49,6 @@ function App() {
 
   function handleTextChange(e, index) {
     const duplicate = JSON.parse(JSON.stringify(data))
-    console.log(duplicate,index)
     if (index < duplicate.length) {
       duplicate[index].data = e.target.value
     }
