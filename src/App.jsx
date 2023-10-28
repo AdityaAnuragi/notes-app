@@ -10,7 +10,7 @@ function App() {
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
 
-  const wasAddButtonClicked = useRef(false) // this holds the boolean value to represent if "+ Add list item" button was recently clicked
+  const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
   const indexOfElementCtrlSlashed = useRef(false) // this holds the index of the element that was Ctrl slashed
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
 
@@ -48,12 +48,14 @@ function App() {
   }
 
   function handleTextChange(e, index) {
-    // e.target.style.height = "0px"
-    // e.target.style.height = `${e.target.scrollHeight}px`
-
     const duplicate = JSON.parse(JSON.stringify(data))
-    duplicate[index].data = e.target.value
-    // console.log(window.getComputedStyle(e.target).getPropertyValue("height"))
+    console.log(duplicate,index)
+    if (index < duplicate.length) {
+      duplicate[index].data = e.target.value
+    }
+    else {
+      duplicate.push({ category: { isCheckBox: false, isChecked: false }, data: `${e.target.value}` })
+    }
     setData(duplicate)
   }
 
@@ -70,26 +72,31 @@ function App() {
     }
   }
 
-  function handleButtonClick() {
+  function handleButtonClick(e) {
     const duplicate = JSON.parse(JSON.stringify(data))
-    duplicate.push({ category: { isCheckBox: false, isChecked: false }, data: "" })
-    wasAddButtonClicked.current = true
+    duplicate.push({ category: { isCheckBox: false, isChecked: false }, data: `${e.target.value}` })
+    wasListItemTextAreaUsed.current = true
     setData(duplicate)
   }
 
   function handleFocusOnLastElementWithAddButtonClick(node) {
-    node.focus()
-    wasAddButtonClicked.current = false
+    node?.focus()
+    node?.setSelectionRange(node.value.length,node.value.length)
+    wasListItemTextAreaUsed.current = false
   }
 
   function callbackForRef(node, index) {
-    if (index === data.length - 1 && node && wasAddButtonClicked.current) {
+    if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) {
       handleFocusOnLastElementWithAddButtonClick(node)
     }
 
     if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === index && node) {
       node?.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
+    }
+    else if(indexOfElementToFocusAfterCtrlEnterOrDelete.current === data.length && node) {
+      const addListItemTextArea = document.getElementById("addNewItemTextArea")
+      addListItemTextArea.focus()
     }
 
     if(indexOfElementCtrlSlashed.current === index && node) {
@@ -134,7 +141,9 @@ function App() {
           </div>
         )
       })}
-      <button id="addNewItemButton" onClick={handleButtonClick} > + Add list item</button>
+      <div className="textAreaContainer">
+        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" value="" onChange={handleButtonClick} />
+      </div>
     </div>
   )
 
