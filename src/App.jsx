@@ -17,7 +17,6 @@ function App() {
     const preText = data[index].data.slice(0, e.target.selectionStart)
     const postText = data[index].data.slice(e.target.selectionStart)
     createNewElement(index + 1, postText, preText)
-    console.log("Ctrl + Enter was pressed!!")
   }
 
   function handleCtrlSlash (index) {
@@ -31,7 +30,6 @@ function App() {
       handleCtrlEnter(e,index)
     }
     else if(e.key === "/" && e.ctrlKey) {
-      console.log("Ctrl + / was pressed")
       indexOfElementCtrlSlashed.current = index
       handleCtrlSlash(index)
     }
@@ -79,11 +77,22 @@ function App() {
     setData(duplicate)
   }
 
+  function handleFocusOnLastElementWithAddButtonClick(node) {
+    node.focus()
+    wasAddButtonClicked.current = false
+  }
+
   function callbackForRef(node, index) {
     if (index === data.length - 1 && node && wasAddButtonClicked.current) {
-      node.focus()
-      wasAddButtonClicked.current = false
+      handleFocusOnLastElementWithAddButtonClick(node)
     }
+
+    if(indexOfElementCtrlSlashed.current === index && node) {
+      console.log(indexOfElementCtrlSlashed.current)
+      node?.focus()
+      indexOfElementCtrlSlashed.current = false
+    }
+
   }
 
   function deleteElement(index) {
@@ -107,7 +116,7 @@ function App() {
           return (
             <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
               <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+              <textarea style={getStyles(index)} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
               <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
             </div>
           )
