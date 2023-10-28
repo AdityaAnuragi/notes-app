@@ -142,6 +142,12 @@ function App() {
       })}
       <div className="textAreaContainer">
         <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" value="" onChange={handleAddListItem} />
+        {
+          /* https://react.dev/reference/react-dom/components/textarea#controlling-a-text-area-with-a-state-variable 
+          read the pitfall's last sentece "React will revert the text area after every keystroke back to the value that you specified"
+          it says revert so my guess is that it momentarily sets it to the keystroke I press and that's why I can use e.target.value
+          in the handleAddListItem funciton in line: 76 */
+        }
       </div>
     </div>
   )
