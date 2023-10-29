@@ -27,14 +27,24 @@ function App() {
   }
 
   function handleKeyDown(e, index) {
-    if (e.key === "Enter" && e.ctrlKey) {
+    if (e.key === "Enter" && e.ctrlKey && e.shiftKey) { // delete selected element
+      deleteElement(index)
+    }
+    
+    else if (e.key === "Enter" && e.ctrlKey) { // enter new element
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = index+1
       handleCtrlEnter(e,index)
     }
-    else if(e.key === "/" && e.ctrlKey) {
+
+    else if (e.key === "\\" && e.ctrlKey) { // toggle the checkbox (ticked or unticked)
+      handleCheckChange(index)
+    }
+
+    else if(e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
       indexOfElementCtrlSlashed.current = index
       handleCtrlSlash(index)
     }
+    // console.log(e)
   }
 
   function createNewElement(index, value = "", preText = "") {
