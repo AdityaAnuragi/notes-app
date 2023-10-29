@@ -85,6 +85,12 @@ function App() {
     wasListItemTextAreaUsed.current = false
   }
 
+  function handleFocusingAddListItemWhenNoElementsInState(node) {
+    if(node && data.length === 0) {
+      node.focus()
+    }
+  }
+
   function callbackForRef(node, index) {
     if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
       handleFocusOnLastElementWithAddButtonClick(node)
@@ -142,7 +148,7 @@ function App() {
         )
       })}
       <div className="textAreaContainer">
-        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" onChange={handleAddListItem} />
+        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
       </div>
     </div>
   )
