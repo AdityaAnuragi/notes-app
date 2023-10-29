@@ -37,7 +37,9 @@ function App() {
     }
 
     else if (e.key === "\\" && e.ctrlKey) { // toggle the checkbox (ticked or unticked)
-      handleCheckChange(index)
+      if(data[index].category.isCheckBox) {
+        handleCheckChange(index)
+      }
     }
 
     else if(e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
