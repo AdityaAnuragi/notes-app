@@ -104,6 +104,8 @@ function App() {
   }
 
   function callbackForRef(node, index) {
+    if (!node) return
+
     if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
       handleFocusOnLastElementWithAddButtonClick(node)
     }
