@@ -106,15 +106,15 @@ function App() {
   function callbackForRef(node, index) {
     if (!node) return
 
-    if (index === data.length - 1 && node && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
+    if (index === data.length - 1 && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
       handleFocusOnLastElementWithAddButtonClick(node)
     }
 
-    if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === index && node) { // focus on the element that comes after the element that was just deleted (else if condition if the last element was deleted)
+    if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === index) { // focus on the element that comes after the element that was just deleted (else if condition if the last element was deleted)
       node?.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
-    else if(indexOfElementToFocusAfterCtrlEnterOrDelete.current === data.length && node) {
+    else if(indexOfElementToFocusAfterCtrlEnterOrDelete.current === data.length) {
       const addListItemTextArea = document.getElementById("addNewItemTextArea")
       addListItemTextArea.focus()
     }
