@@ -16,7 +16,8 @@ function App() {
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
-  const indexOfElementCtrlSlashed = useRef(false) // this holds the index of the element that was Ctrl slashed
+  const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false) 
+  // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
   
   const hasChanged = useThrottle(10000)
@@ -62,7 +63,7 @@ function App() {
     }
 
     else if(e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
-      indexOfElementCtrlSlashed.current = index
+      indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current = index
       handleCtrlSlash(index)
     }
     // console.log(e)
@@ -138,10 +139,10 @@ function App() {
       addListItemTextArea.focus()
     }
 
-    if(indexOfElementCtrlSlashed.current === index) { // focus on the element that was toggled from having a checkbox or not
+    if(indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current === index) { // focus on the element that was toggled from having a checkbox or not
       node?.focus()
       node?.setSelectionRange(node.value.length,node.value.length)
-      indexOfElementCtrlSlashed.current = false
+      indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current = false
     }
 
   }
