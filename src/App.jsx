@@ -1,18 +1,37 @@
-import { useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import "./App.css"
+import useThrottle from "./customHooks/useThrottle"
 
 function App() {
 
   const [data, setData] = useState([
-    { category: { isCheckBox: false, isChecked: false }, data: "first\nsecond" },
+    { category: { isCheckBox: false, isChecked: false }, data: "a" },
     { category: { isCheckBox: true, isChecked: false }, data: "This is a checkbox" },
     { category: { isCheckBox: true, isChecked: true }, data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
+  const snapShotHistory = useRef([data])
+  snapShotHistory.current[snapShotHistory.current.length - 1] = data
+  console.log("top level ",snapShotHistory.current[snapShotHistory.current.length-1][0].data)
+
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
   const indexOfElementCtrlSlashed = useRef(false) // this holds the index of the element that was Ctrl slashed
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
+  
+  const hasChanged = useThrottle(10000)
+
+  useEffect(() => {
+    console.log("useEffect triggered")
+    console.log("")
+    return () => {
+      if(hasChanged) {
+        snapShotHistory.current.splice(snapShotHistory.current.length-1,0,data) 
+        console.log("My snapshot history is ",snapShotHistory.current)
+      }
+    }
+  },[hasChanged])
+
 
   function handleCtrlEnter(e, index) {
     const preText = data[index].data.slice(0, e.target.selectionStart)
