@@ -138,7 +138,7 @@ function App() {
       addListItemTextArea.focus()
     }
 
-    if(indexOfElementCtrlSlashed.current === index && node) { // focus on the element that was toggled from having a checkbox or not
+    if(indexOfElementCtrlSlashed.current === index) { // focus on the element that was toggled from having a checkbox or not
       node?.focus()
       node?.setSelectionRange(node.value.length,node.value.length)
       indexOfElementCtrlSlashed.current = false
