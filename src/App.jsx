@@ -3,7 +3,7 @@ import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
 
 function App() {
-  window.addEventListener("keydown",(e)=>console.log(e));
+  // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "a" },
     { category: { isCheckBox: true, isChecked: false }, data: "This is a checkbox" },
@@ -12,7 +12,7 @@ function App() {
   ])
   const snapShotHistory = useRef([data])
   snapShotHistory.current[snapShotHistory.current.length - 1] = data
-  console.log("top level ",snapShotHistory.current[snapShotHistory.current.length-1][0].data)
+  console.log("top level ",snapShotHistory?.current[snapShotHistory.current?.length-1][0]?.data)
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
@@ -164,7 +164,7 @@ function App() {
 
   return (
     <div id="individualNoteContainer" >
-      {data.map((element, index) => {
+      {data && data.map((element, index) => {
         if (element.category.isCheckBox) {
           return (
             <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
