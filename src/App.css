@@ -4,14 +4,30 @@
     max-width: 300px;
   }
 } */
+
+@media (min-width : 426px) {
+  textarea,button {
+    font-size: 32px;
+  }
+  input {
+    width: 30px;
+    height: 30px;
+  }
+
+  .deleteButton{
+    width: calc(20px*3.5); /*originally 20px */
+    height: calc(16px*3.5); /* originally 16px */
+  }
+}
+
 body {
   margin: 0px;
 }
 
-input {
+/* input {
   width: 30px;
   height: 30px;
-}
+} */
 
 #spanningTheWholeViewWidthAndHeightWrapper {
   height: 100vh;
@@ -40,9 +56,9 @@ textarea {
   /* border: 2px solid red; */
 }
 
-textarea,button {
+/* textarea,button {
   font-size: 32px;
-}
+} */
 
 textarea:focus-visible {
   outline: 0px;
@@ -62,8 +78,8 @@ textarea:focus-visible {
 
 .deleteButton {
   opacity: 0;
-  width: calc(20px*3.5); /*originally 20px */
-  height: calc(16px*3.5); /* originally 16px */
+  /* width: calc(20px*3.5); originally 20px */
+  /* height: calc(16px*3.5); originally 16px */
 }
 
 .textAreaContainer:focus-within .deleteButton {
