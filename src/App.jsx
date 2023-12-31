@@ -3,7 +3,7 @@ import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
 
 function App() {
-
+  window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "a" },
     { category: { isCheckBox: true, isChecked: false }, data: "This is a checkbox" },
