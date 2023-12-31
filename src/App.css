@@ -1,9 +1,9 @@
-/* @media (min-width: 1250px) {
+@media (min-width: 500px) {
   #individualNoteContainer {
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 500px;
+    max-width: 500px;
   }
-} */
+}
 
 @media (min-width : 426px) {
   textarea,button {
