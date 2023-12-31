@@ -5,6 +5,13 @@
   }
 }
 
+@media (max-width: 500px) {
+  #individualNoteContainer {
+    min-width: 300px;
+    max-width: 300px;
+  }
+}
+
 @media (min-width : 426px) {
   textarea,button {
     font-size: 32px;
