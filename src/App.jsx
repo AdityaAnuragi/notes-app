@@ -6,7 +6,7 @@ function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "a" },
-    { category: { isCheckBox: true, isChecked: false }, data: "This is a checkbox" },
+    { category: { isCheckBox: true, isChecked: false }, data: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis hic, odit " },
     { category: { isCheckBox: true, isChecked: true }, data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
@@ -163,26 +163,30 @@ function App() {
   }, [data])
 
   return (
-    <div id="individualNoteContainer" >
-      {data && data.map((element, index) => {
-        if (element.category.isCheckBox) {
+    <div id="spanningTheWholeViewWidthAndHeightWrapper">
+      <div id="individualNoteContainer" >
+        {data && data.map((element, index) => {
+          if (element.category.isCheckBox) {
+            return (
+              <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
+                <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
+                  <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
+                  <textarea style={getStyles(index)} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                </div>
+                <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+              </div>
+            )
+          }
           return (
-            <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start" }} >
-              <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-              <textarea style={getStyles(index)} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+            <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
+              <textarea style={{ resize: "none", display: "block" }} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
               <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
             </div>
           )
-        }
-        return (
-          <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-            <textarea style={{ resize: "none", display: "block" }} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
-            <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
-          </div>
-        )
-      })}
-      <div className="textAreaContainer">
-        <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+        })}
+        <div className="textAreaContainer">
+          <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+        </div>
       </div>
     </div>
   )
