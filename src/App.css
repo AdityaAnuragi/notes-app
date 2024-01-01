@@ -22,8 +22,8 @@
   }
 
   .deleteButton{
-    width: calc(20px*3.5); /*originally 20px */
-    height: calc(16px*3.5); /* originally 16px */
+    width: calc(20px*3); /*originally 20px */
+    height: calc(16px*3); /* originally 16px */
   }
 }
 
@@ -85,6 +85,7 @@ textarea:focus-visible {
 
 .deleteButton {
   opacity: 0;
+  margin-top: 1px;
   /* width: calc(20px*3.5); originally 20px */
   /* height: calc(16px*3.5); originally 16px */
 }
