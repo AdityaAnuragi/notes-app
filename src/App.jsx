@@ -11,13 +11,31 @@ function App() {
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
 
+  const [pointer, setPointer] = useState(-1) 
+  // this tells which snapshot we're currently at out of all the snapshots in the history, -1 means the most recent
+
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
   const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false) 
   // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
   
-  const hasChanged = useThrottle(10000)
+  const history = useRef(JSON.parse(JSON.stringify([data])))
+  const filteredHistory = useRef(JSON.parse(JSON.stringify([data])))
+
+  if(pointer === -1) {
+    history.current[history.current.length-1] = data
+    const enoughTimePassed = useThrottle(10000)
+
+    if(enoughTimePassed) {
+      history.current.push(data)
+      filteredHistory.current = history.current.slice(0,history.current.length-1) // getting all elements except last element
+    }
+    else {
+      filteredHistory.current = history.current.slice() // slicing the entire array
+    }
+  }
+
 
 
   function handleCtrlEnter(e, index) {
