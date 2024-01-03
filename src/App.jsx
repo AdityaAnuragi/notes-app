@@ -10,9 +10,6 @@ function App() {
     { category: { isCheckBox: true, isChecked: true }, data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
-  const snapShotHistory = useRef([data])
-  snapShotHistory.current[snapShotHistory.current.length - 1] = data
-  console.log("top level ",snapShotHistory?.current[snapShotHistory.current?.length-1][0]?.data)
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
@@ -21,17 +18,6 @@ function App() {
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
   
   const hasChanged = useThrottle(10000)
-
-  useEffect(() => {
-    console.log("useEffect triggered")
-    console.log("")
-    return () => {
-      if(hasChanged) {
-        snapShotHistory.current.splice(snapShotHistory.current.length-1,0,data) 
-        console.log("My snapshot history is ",snapShotHistory.current)
-      }
-    }
-  },[hasChanged])
 
 
   function handleCtrlEnter(e, index) {
