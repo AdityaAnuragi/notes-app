@@ -1,7 +1,14 @@
+#spanningTheWholeViewWidthAndHeightWrapper {
+  display: flex;
+}
+
 @media (min-width: 500px) {
   #individualNoteContainer {
     min-width: 500px;
     max-width: 500px;
+  }
+  #spanningTheWholeViewWidthAndHeightWrapper {
+    align-items: center;
   }
 }
 
@@ -9,6 +16,7 @@
   #individualNoteContainer {
     min-width: 300px;
     max-width: 300px;
+    height: fit-content;
   }
 }
 
@@ -38,8 +46,8 @@ body {
 
 #spanningTheWholeViewWidthAndHeightWrapper {
   height: 100vh;
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   justify-content: center;
 }
 
