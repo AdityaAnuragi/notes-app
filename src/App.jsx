@@ -166,16 +166,18 @@ function App() {
     }
   }, [data])
 
+  console.log("The filtered history is",filteredHistory.current)
+
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
-        {data && data.map((element, index) => {
+        {filteredHistory.current[filteredHistory.current.length+pointer] && filteredHistory.current[filteredHistory.current.length+pointer].map((element, index) => {
           if (element.category.isCheckBox) {
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
                 <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
-                  <input type="checkbox" checked={data[index].category.isChecked} onChange={() => handleCheckChange(index)} />
-                  <textarea style={getStyles(index)} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                  <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length+pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
+                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
                 </div>
                 <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
               </div>
@@ -183,7 +185,7 @@ function App() {
           }
           return (
             <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-              <textarea style={{ resize: "none", display: "block" }} value={data[index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+              <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
               <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
             </div>
           )
