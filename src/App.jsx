@@ -23,16 +23,21 @@ function App() {
   const history = useRef(JSON.parse(JSON.stringify([data])))
   const filteredHistory = useRef(JSON.parse(JSON.stringify([data])))
 
-  if(pointer === -1) {
+  const wasRedoJustClicked = useRef(false)
+
+  console.log("Above, filtered history is ",filteredHistory.current)
+  console.log("Above, history is ",history.current)
+  console.log(`Pointer is ${pointer}`)
+  const enoughTimePassed = useThrottle(10000,pointer !== -1)
+  if(pointer === -1 && !(wasRedoJustClicked.current)) {
     history.current[history.current.length-1] = data
-    const enoughTimePassed = useThrottle(10000)
 
     if(enoughTimePassed) {
       history.current.push(data)
-      filteredHistory.current = history.current.slice(0,history.current.length-1) // getting all elements except last element
+      filteredHistory.current = history.current?.slice(0,history.current?.length-1) // getting all elements except last element
     }
     else {
-      filteredHistory.current = history.current.slice() // slicing the entire array
+      filteredHistory.current = history.current?.slice() // slicing the entire array
     }
   }
 
@@ -91,7 +96,15 @@ function App() {
     else {
       duplicate.push({ category: { isCheckBox: false, isChecked: false }, data: `${e.target.value}` })
     }
+
+    wasRedoJustClicked.current = false
+    // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
+    filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) 
+    // unfiltered histor will be the same as the filtered history
+    history.current = history.current.slice(0,pointer + history.current.length + 2)
+  
     setData(duplicate)
+    setPointer(-1)
   }
 
   function handleCheckChange(index) {
@@ -164,10 +177,11 @@ function App() {
       collection[i].style.height = "0px"
       collection[i].style.height = `${(collection[i].scrollHeight) + 4}px`
     }
-  }, [data])
+  }, [data,pointer])
 
-  console.log("The filtered history is",filteredHistory.current)
-
+  console.log("Below, The filtered history is",filteredHistory.current)
+  console.log("Below, history is ",history.current)
+  console.log("")
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
@@ -194,7 +208,13 @@ function App() {
           <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
         </div>
         <button onClick={() => setPointer((prev) => prev-1)} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
-        <button onClick={() => setPointer((prev) => prev+1)} disabled={pointer === -1} >Redo</button>
+        <button 
+          onClick={() => {
+            wasRedoJustClicked.current = true
+            setPointer((prev) => prev+1)
+          }} 
+          disabled={pointer === -1} 
+        >Redo</button>
       </div>
     </div>
   )
