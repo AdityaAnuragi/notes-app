@@ -110,7 +110,15 @@ function App() {
   function handleCheckChange(index) {
     const duplicate = JSON.parse(JSON.stringify(data))
     duplicate[index].category.isChecked = !(duplicate[index].category.isChecked)
+
+    wasRedoJustClicked.current = false
+    // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
+    filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) 
+    // unfiltered histor will be the same as the filtered history
+    history.current = history.current.slice(0,pointer + history.current.length + 2)
+
     setData(duplicate)
+    setPointer(-1)
   }
 
   function getStyles(index) {
