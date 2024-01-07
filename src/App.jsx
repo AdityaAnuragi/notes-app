@@ -193,6 +193,8 @@ function App() {
         <div className="textAreaContainer">
           <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
         </div>
+        <button onClick={() => setPointer((prev) => prev-1)} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
+        <button onClick={() => setPointer((prev) => prev+1)} disabled={pointer === -1} >Redo</button>
       </div>
     </div>
   )
