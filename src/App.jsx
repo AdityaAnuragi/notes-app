@@ -28,7 +28,7 @@ function App() {
   console.log("Above, filtered history is ",filteredHistory.current)
   console.log("Above, history is ",history.current)
   console.log(`Pointer is ${pointer}`)
-  const enoughTimePassed = useThrottle(10000,pointer !== -1)
+  const enoughTimePassed = useThrottle(5000,pointer !== -1)
   if(pointer === -1 && !(wasRedoJustClicked.current)) {
     history.current[history.current.length-1] = data
 
