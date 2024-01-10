@@ -99,10 +99,17 @@ function App() {
 
     wasRedoJustClicked.current = false
     // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
+    const isEqualLength = filteredHistory.current.length === history.current.length
     filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) // abcd
     // unfiltered histor will be the same as the filtered history
     // abcdefghh
-    history.current = history.current.slice(0,pointer + history.current.length + 1 ) //abcd
+    
+    if(!isEqualLength) {
+      history.current = history.current.slice(0,pointer + history.current.length + 1 ) //abcd
+    }
+    else {
+      history.current = history.current.slice(0,pointer + history.current.length + 2 ) //abcd
+    }
     console.log("Inside handle text change, filtered history is")
     console.log(filteredHistory.current)
     setData(duplicate)
@@ -114,10 +121,19 @@ function App() {
     duplicate[index].category.isChecked = !(duplicate[index].category.isChecked)
 
     wasRedoJustClicked.current = false
+
+    const isEqualLength = filteredHistory.current.length === history.current.length
+
+
     // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
     filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) 
     // unfiltered histor will be the same as the filtered history
-    history.current = history.current.slice(0,pointer + history.current.length + 1)
+    if(!isEqualLength) {
+      history.current = history.current.slice(0,pointer + history.current.length + 1)
+    }
+    else {
+      history.current = history.current.slice(0,pointer + history.current.length + 2 )
+    }
 
     setData(duplicate)
     setPointer(-1)
