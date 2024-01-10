@@ -89,7 +89,7 @@ function App() {
   }
 
   function handleTextChange(e, index) {
-    const duplicate = JSON.parse(JSON.stringify(data))
+    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length+pointer]))
     if (index < duplicate.length) {
       duplicate[index].data = e.target.value
     }
@@ -117,7 +117,7 @@ function App() {
   }
 
   function handleCheckChange(index) {
-    const duplicate = JSON.parse(JSON.stringify(data))
+    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length+pointer]))
     duplicate[index].category.isChecked = !(duplicate[index].category.isChecked)
 
     wasRedoJustClicked.current = false
