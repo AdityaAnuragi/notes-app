@@ -28,7 +28,7 @@ function App() {
   console.log("Above, filtered history is ",filteredHistory.current)
   console.log("Above, history is ",history.current)
   console.log(`Pointer is ${pointer}`)
-  const enoughTimePassed = useThrottle(2000,pointer !== -1)
+  const enoughTimePassed = useThrottle(1000,pointer !== -1)
   if(pointer === -1 && !(wasRedoJustClicked.current)) {
     history.current[history.current.length-1] = data
 
@@ -99,9 +99,10 @@ function App() {
 
     wasRedoJustClicked.current = false
     // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
-    filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) 
+    filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) // abcd
     // unfiltered histor will be the same as the filtered history
-    history.current = history.current.slice(0,pointer + history.current.length + 2)
+    // abcdefghh
+    history.current = history.current.slice(0,pointer + history.current.length + 1 ) //abcd
     console.log("Inside handle text change, filtered history is")
     console.log(filteredHistory.current)
     setData(duplicate)
@@ -116,7 +117,7 @@ function App() {
     // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
     filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) 
     // unfiltered histor will be the same as the filtered history
-    history.current = history.current.slice(0,pointer + history.current.length + 2)
+    history.current = history.current.slice(0,pointer + history.current.length + 1)
 
     setData(duplicate)
     setPointer(-1)
