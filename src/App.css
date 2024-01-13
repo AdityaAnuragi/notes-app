@@ -4,20 +4,20 @@
 
 @media (min-width: 500px) {
   #individualNoteContainer {
-    /* min-width: 500px;
-    max-width: 500px; */
-    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+    /* this is to make sure that width remains constant otherwise it'll look bad */
   }
-  #spanningTheWholeViewWidthAndHeightWrapper {
+  /* #spanningTheWholeViewWidthAndHeightWrapper {
     align-items: center;
-  }
+  } */
 }
 
 @media (max-width: 500px) {
   #individualNoteContainer {
-    /* min-width: 300px;
-    max-width: 300px; */
-    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    /* width: 300px; this is to make sure that width remains constant otherwise it'll look bad */ 
     height: fit-content;
   }
 }
@@ -57,6 +57,10 @@ body {
   border: 2px solid black;
   width: fit-content;
   padding: 2px;
+
+  height: fit-content;
+  margin-top: 50px;
+  
   /* transform-origin: 0 0;
   transform: scale(2.3); */
 
@@ -102,4 +106,10 @@ textarea:focus-visible {
 
 .textAreaContainer:focus-within .deleteButton {
   opacity: 1;
+}
+
+
+#elementContainer {
+  max-height: 600px;
+  overflow-y: scroll;
 }
