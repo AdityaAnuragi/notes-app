@@ -8,9 +8,9 @@
     max-width: 500px;
     /* this is to make sure that width remains constant otherwise it'll look bad */
   }
-  /* #spanningTheWholeViewWidthAndHeightWrapper {
+  #spanningTheWholeViewWidthAndHeightWrapper {
     align-items: center;
-  } */
+  }
 }
 
 @media (max-width: 500px) {
@@ -59,8 +59,8 @@ body {
   padding: 2px;
 
   height: fit-content;
-  margin-top: 50px;
-  
+  /* margin-top: 50px; */
+  max-height: 600px;
   /* transform-origin: 0 0;
   transform: scale(2.3); */
 
@@ -110,6 +110,6 @@ textarea:focus-visible {
 
 
 #elementContainer {
-  max-height: 600px;
+  max-height: 500px;
   overflow-y: scroll;
 }
