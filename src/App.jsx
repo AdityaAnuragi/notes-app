@@ -211,36 +211,40 @@ function App() {
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
-        {filteredHistory.current[filteredHistory.current.length+pointer] && filteredHistory.current[filteredHistory.current.length+pointer].map((element, index) => {
-          if (element.category.isCheckBox) {
-            return (
-              <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
-                <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
-                  <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length+pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
-                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+        <div id="elementContainer">
+          {filteredHistory.current[filteredHistory.current.length+pointer] && filteredHistory.current[filteredHistory.current.length+pointer].map((element, index) => {
+            if (element.category.isCheckBox) {
+              return (
+                <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
+                  <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
+                    <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length+pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
+                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                  </div>
+                  <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
                 </div>
+              )
+            }
+            return (
+              <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
+                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
                 <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
               </div>
             )
-          }
-          return (
-            <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-              <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
-              <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
-            </div>
-          )
-        })}
-        <div className="textAreaContainer">
-          <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+          })}
+          <div className="textAreaContainer">
+            <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+          </div>
         </div>
-        <button onClick={() => setPointer((prev) => prev-1)} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
-        <button 
-          onClick={() => {
-            wasRedoJustClicked.current = true
-            setPointer((prev) => prev+1)
-          }} 
-          disabled={pointer === -1} 
-        >Redo</button>
+        <footer>
+          <button onClick={() => setPointer((prev) => prev-1)} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
+          <button 
+            onClick={() => {
+              wasRedoJustClicked.current = true
+              setPointer((prev) => prev+1)
+            }} 
+            disabled={pointer === -1} 
+          >Redo</button>
+        </footer>
       </div>
     </div>
   )
