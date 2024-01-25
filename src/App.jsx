@@ -71,7 +71,7 @@ function App() {
   }
 
   function handleKeyDown(e, index) {
-    if (e.key === "Enter" && e.ctrlKey && e.shiftKey) { // delete selected element
+    if (e.key === "Delete" && e.ctrlKey) { // delete selected element
       deleteElement(index)
     }
     
