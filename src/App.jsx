@@ -197,9 +197,14 @@ function App() {
   }, [data,pointer])
 
   function handleUndo() {
-    console.log(`Inside handleUndo, Pointer is ${pointer}`)
-    console.log(`Inside handleUndo, fh len is ${filteredHistory.current.length}`)
+    // console.log(`Inside handleUndo, Pointer is ${pointer}`)
+    // console.log(`Inside handleUndo, fh len is ${filteredHistory.current.length}`)
     setPointer((prev) => prev-1)
+  }
+
+  function handleRedo() {
+    wasRedoJustClicked.current = true
+    setPointer((prev) => prev+1)
   }
 
   function canIUndo(e) {
@@ -249,10 +254,7 @@ function App() {
         <footer>
           <button onClick={handleUndo} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
           <button 
-            onClick={() => {
-              wasRedoJustClicked.current = true
-              setPointer((prev) => prev+1)
-            }} 
+            onClick={handleRedo} 
             disabled={pointer === -1} 
           >Redo</button>
         </footer>
