@@ -210,7 +210,9 @@ function App() {
   function canIUndo(e) {
     // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
     if(e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)) {
+      e.preventDefault()
       console.log(`${e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)}`)
+      console.log(e)
       handleUndo()
     }
   }
