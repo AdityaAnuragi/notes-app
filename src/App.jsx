@@ -196,6 +196,26 @@ function App() {
     }
   }, [data,pointer])
 
+  function handleUndo() {
+    console.log(`Inside handleUndo, Pointer is ${pointer}`)
+    console.log(`Inside handleUndo, fh len is ${filteredHistory.current.length}`)
+    setPointer((prev) => prev-1)
+  }
+
+  function canIUndo(e) {
+    // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
+    if(e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)) {
+      console.log(`${e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)}`)
+      handleUndo()
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("keydown",canIUndo)
+    return () => {
+      window.removeEventListener("keydown",canIUndo)
+    }
+  })
+
   console.log("Below, The filtered history is",filteredHistory.current)
   console.log("Below, history is ",history.current)
   console.log("")
@@ -227,7 +247,7 @@ function App() {
           </div>
         </div>
         <footer>
-          <button onClick={() => setPointer((prev) => prev-1)} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
+          <button onClick={handleUndo} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
           <button 
             onClick={() => {
               wasRedoJustClicked.current = true
