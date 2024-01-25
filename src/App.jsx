@@ -216,10 +216,20 @@ function App() {
       handleUndo()
     }
   }
+
+  function canIRedo(e) {
+    if(e.key === "y" && e.ctrlKey && pointer !== -1) {
+      e.preventDefault()
+      handleRedo()
+    }
+  }
+
   useEffect(() => {
     window.addEventListener("keydown",canIUndo)
+    window.addEventListener("keydown",canIRedo)
     return () => {
       window.removeEventListener("keydown",canIUndo)
+      window.removeEventListener("keydown",canIRedo)
     }
   })
 
