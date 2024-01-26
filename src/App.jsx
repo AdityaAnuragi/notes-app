@@ -225,8 +225,8 @@ function App() {
 
   function canIUndo(e) {
     // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
+    if(e.key === "z" && e.ctrlKey) e.preventDefault()
     if (e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)) {
-      e.preventDefault()
       console.log(`${e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)}`)
       console.log(e)
       handleUndo()
@@ -234,8 +234,8 @@ function App() {
   }
 
   function canIRedo(e) {
+    if((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey)e.preventDefault()
     if ((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey && pointer !== -1) {
-      e.preventDefault()
       handleRedo()
     }
   }
