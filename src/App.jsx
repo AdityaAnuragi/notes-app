@@ -20,6 +20,8 @@ function App() {
   // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
 
+  const indexOfCurrentlyFocusedElement = useRef(false)
+
   const history = useRef(JSON.parse(JSON.stringify([data])))
   const filteredHistory = useRef(JSON.parse(JSON.stringify([data])))
 
@@ -241,6 +243,11 @@ function App() {
     }
   })
 
+  function handleOnFocus(index) {
+    indexOfCurrentlyFocusedElement.current = index
+    console.log(`Index to focus ${indexOfCurrentlyFocusedElement.current}`)
+  }
+
   // console.log("Below, The filtered history is", filteredHistory.current)
   // console.log("Below, history is ", history.current)
   // console.log("")
@@ -258,7 +265,7 @@ function App() {
                 <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
                   <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
                     <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
-                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
                   <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
                 </div>
@@ -266,7 +273,7 @@ function App() {
             }
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
               </div>
             )
@@ -276,7 +283,7 @@ function App() {
           </div>
         </div>
         <footer>
-          <button>CB</button>
+          <button onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} >CB</button>
           <div id="undoRedoContainer">
             <button onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} >Undo</button>
             <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
