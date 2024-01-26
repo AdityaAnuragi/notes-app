@@ -264,8 +264,12 @@ function App() {
           </div>
         </div>
         <footer>
-          <button onClick={handleUndo} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
-          <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
+          <button>CB</button>
+          <div id="undoRedoContainer">
+            <button onClick={handleUndo} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
+            <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
+          </div>
+          <button>Del Note</button>
         </footer>
       </div>
     </div>

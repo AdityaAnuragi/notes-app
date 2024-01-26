@@ -113,3 +113,8 @@ textarea:focus-visible {
   max-height: 500px;
   overflow-y: auto;
 }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
