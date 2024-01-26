@@ -75,21 +75,25 @@ function App() {
 
   function handleKeyDown(e, index) {
     if (e.key === "Enter" && e.ctrlKey && e.shiftKey) { // delete selected element
+      e.preventDefault()
       deleteElement(index)
     }
 
     else if (e.key === "Enter" && e.ctrlKey) { // enter new element
+      e.preventDefault()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
       handleCtrlEnter(e, index)
     }
 
     else if (e.key === "\\" && e.ctrlKey) { // toggle the checkbox (ticked or unticked)
+      e.preventDefault()
       if (filteredHistory.current[filteredHistory.current.length + pointer][index].category.isCheckBox) {
         handleCheckChange(index)
       }
     }
 
     else if (e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
+      e.preventDefault()
       indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current = index
       handleCtrlSlash(index)
     }
