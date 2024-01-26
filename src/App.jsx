@@ -11,30 +11,30 @@ function App() {
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
 
-  const [pointer, setPointer] = useState(-1) 
+  const [pointer, setPointer] = useState(-1)
   // this tells which snapshot we're currently at out of all the snapshots in the history, -1 means the most recent
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
-  const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false) 
+  const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false)
   // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
-  
+
   const history = useRef(JSON.parse(JSON.stringify([data])))
   const filteredHistory = useRef(JSON.parse(JSON.stringify([data])))
 
   const wasRedoJustClicked = useRef(false)
 
-  console.log("Above, filtered history is ",filteredHistory.current)
-  console.log("Above, history is ",history.current)
+  console.log("Above, filtered history is ", filteredHistory.current)
+  console.log("Above, history is ", history.current)
   console.log(`Pointer is ${pointer}`)
-  const enoughTimePassed = useThrottle(750,pointer !== -1)
-  if(pointer === -1 && !(wasRedoJustClicked.current)) {
-    history.current[history.current.length-1] = data
+  const enoughTimePassed = useThrottle(750, pointer !== -1)
+  if (pointer === -1 && !(wasRedoJustClicked.current)) {
+    history.current[history.current.length - 1] = data
 
-    if(enoughTimePassed) {
+    if (enoughTimePassed) {
       history.current.push(data)
-      filteredHistory.current = history.current?.slice(0,history.current?.length-1) // getting all elements except last element
+      filteredHistory.current = history.current?.slice(0, history.current?.length - 1) // getting all elements except last element
     }
     else {
       filteredHistory.current = history.current?.slice() // slicing the entire array
@@ -45,12 +45,12 @@ function App() {
     wasRedoJustClicked.current = false
     // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
     const isEqualLength = filteredHistory.current.length === history.current.length
-    filteredHistory.current = filteredHistory.current.slice(0,pointer+filteredHistory.current.length+2) // abcd
-    if(!isEqualLength) {
-      history.current = history.current.slice(0,pointer + history.current.length + 1 ) //abcd
+    filteredHistory.current = filteredHistory.current.slice(0, pointer + filteredHistory.current.length + 2) // abcd
+    if (!isEqualLength) {
+      history.current = history.current.slice(0, pointer + history.current.length + 1) //abcd
     }
     else {
-      history.current = history.current.slice(0,pointer + history.current.length + 2 ) //abcd
+      history.current = history.current.slice(0, pointer + history.current.length + 2) //abcd
     }
     // console.log("Inside handle text change, filtered history is")
     // console.log(filteredHistory.current)
@@ -63,7 +63,7 @@ function App() {
     createNewElement(index + 1, postText, preText)
   }
 
-  function handleCtrlSlash (index) {
+  function handleCtrlSlash(index) {
     const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length + pointer]))
     duplicate[index].category.isCheckBox = !(duplicate[index].category.isCheckBox)
     updatingWasredojustclickedHistoryPointer()
@@ -74,19 +74,19 @@ function App() {
     if (e.key === "Enter" && e.ctrlKey && e.shiftKey) { // delete selected element
       deleteElement(index)
     }
-    
+
     else if (e.key === "Enter" && e.ctrlKey) { // enter new element
-      indexOfElementToFocusAfterCtrlEnterOrDelete.current = index+1
-      handleCtrlEnter(e,index)
+      indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
+      handleCtrlEnter(e, index)
     }
 
     else if (e.key === "\\" && e.ctrlKey) { // toggle the checkbox (ticked or unticked)
-      if(filteredHistory.current[filteredHistory.current.length + pointer][index].category.isCheckBox) {
+      if (filteredHistory.current[filteredHistory.current.length + pointer][index].category.isCheckBox) {
         handleCheckChange(index)
       }
     }
 
-    else if(e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
+    else if (e.key === "/" && e.ctrlKey) { // toggle between element having checkbox or not
       indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current = index
       handleCtrlSlash(index)
     }
@@ -107,7 +107,7 @@ function App() {
   }
 
   function handleTextChange(e, index) {
-    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length+pointer]))
+    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length + pointer]))
     if (index < duplicate.length) {
       duplicate[index].data = e.target.value
     }
@@ -120,7 +120,7 @@ function App() {
   }
 
   function handleCheckChange(index) {
-    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length+pointer]))
+    const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length + pointer]))
     duplicate[index].category.isChecked = !(duplicate[index].category.isChecked)
 
     updatingWasredojustclickedHistoryPointer()
@@ -146,12 +146,12 @@ function App() {
 
   function handleFocusOnLastElementWithAddButtonClick(node) {
     node?.focus()
-    node?.setSelectionRange(node.value.length,node.value.length)
+    node?.setSelectionRange(node.value.length, node.value.length)
     wasListItemTextAreaUsed.current = false
   }
 
   function handleFocusingAddListItemWhenNoElementsInState(node) {
-    if(node && data.length === 0) {
+    if (node && data.length === 0) {
       node.focus()
     }
   }
@@ -167,14 +167,14 @@ function App() {
       node?.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
-    else if(indexOfElementToFocusAfterCtrlEnterOrDelete.current === filteredHistory.current[filteredHistory.current.length + pointer].length) {
+    else if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === filteredHistory.current[filteredHistory.current.length + pointer].length) {
       const addListItemTextArea = document.getElementById("addNewItemTextArea")
       addListItemTextArea.focus()
     }
 
-    if(indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current === index) { // focus on the element that was toggled from having a checkbox or not
+    if (indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current === index) { // focus on the element that was toggled from having a checkbox or not
       node?.focus()
-      node?.setSelectionRange(node.value.length,node.value.length)
+      node?.setSelectionRange(node.value.length, node.value.length)
       indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current = false
     }
 
@@ -194,59 +194,59 @@ function App() {
       collection[i].style.height = "0px"
       collection[i].style.height = `${(collection[i].scrollHeight) + 4}px`
     }
-  }, [data,pointer])
+  }, [data, pointer])
 
   function handleUndo() {
     // console.log(`Inside handleUndo, Pointer is ${pointer}`)
     // console.log(`Inside handleUndo, fh len is ${filteredHistory.current.length}`)
-    setPointer((prev) => prev-1)
+    setPointer((prev) => prev - 1)
   }
 
   function handleRedo() {
     wasRedoJustClicked.current = true
-    setPointer((prev) => prev+1)
+    setPointer((prev) => prev + 1)
   }
 
   function canIUndo(e) {
     // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
-    if(e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)) {
+    if (e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)) {
       e.preventDefault()
-      console.log(`${e.key === "z" && e.ctrlKey && (pointer*-1 !== filteredHistory.current.length)}`)
+      console.log(`${e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)}`)
       console.log(e)
       handleUndo()
     }
   }
 
   function canIRedo(e) {
-    if((e.key === "y" || (e.key === "Z" && e.shiftKey) ) && e.ctrlKey && pointer !== -1) {
+    if ((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey && pointer !== -1) {
       e.preventDefault()
       handleRedo()
     }
   }
 
   useEffect(() => {
-    window.addEventListener("keydown",canIUndo)
-    window.addEventListener("keydown",canIRedo)
+    window.addEventListener("keydown", canIUndo)
+    window.addEventListener("keydown", canIRedo)
     return () => {
-      window.removeEventListener("keydown",canIUndo)
-      window.removeEventListener("keydown",canIRedo)
+      window.removeEventListener("keydown", canIUndo)
+      window.removeEventListener("keydown", canIRedo)
     }
   })
 
-  console.log("Below, The filtered history is",filteredHistory.current)
-  console.log("Below, history is ",history.current)
+  console.log("Below, The filtered history is", filteredHistory.current)
+  console.log("Below, history is ", history.current)
   console.log("")
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
         <div id="elementContainer">
-          {filteredHistory.current[filteredHistory.current.length+pointer] && filteredHistory.current[filteredHistory.current.length+pointer].map((element, index) => {
+          {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             if (element.category.isCheckBox) {
               return (
                 <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
                   <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
-                    <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length+pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
-                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                    <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
+                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
                   </div>
                   <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
                 </div>
@@ -254,7 +254,7 @@ function App() {
             }
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length+pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
+                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} />
                 <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
               </div>
             )
@@ -266,7 +266,7 @@ function App() {
         <footer>
           <button>CB</button>
           <div id="undoRedoContainer">
-            <button onClick={handleUndo} disabled={pointer*-1 === filteredHistory.current.length} >Undo</button>
+            <button onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} >Undo</button>
             <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
           </div>
           <button>Del Note</button>
