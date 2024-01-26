@@ -28,9 +28,9 @@ function App() {
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
   console.log(`Pointer is ${pointer}`)
-  console.log(`was add list item used ${wasListItemTextAreaUsed.current}`)
-  console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
-  console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
+  // console.log(`was add list item used ${wasListItemTextAreaUsed.current}`)
+  // console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
+  // console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
   const enoughTimePassed = useThrottle(750, pointer !== -1)
   if (pointer === -1 && !(wasRedoJustClicked.current)) {
     history.current[history.current.length - 1] = data
@@ -239,11 +239,11 @@ function App() {
 
   // console.log("Below, The filtered history is", filteredHistory.current)
   // console.log("Below, history is ", history.current)
-  console.log("")
-  console.log(`was add list item used ${wasListItemTextAreaUsed.current}`)
-  console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
-  console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
-  console.log("")
+  // console.log("")
+  // console.log(`was add list item used ${wasListItemTextAreaUsed.current}`)
+  // console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
+  // console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
+  // console.log("")
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
