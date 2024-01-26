@@ -16,11 +16,17 @@ function App() {
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
+  
   const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false)
   // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
+  
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
 
   const indexOfCurrentlyFocusedElement = useRef(false)
+  /* the above ref holds an index value, which used to know which index value to change in the "data" state
+    it's only useful for the button on the hotbar that can add/remove a checkbox for a list item
+    the keyboard shotcut ctrl + / doesn't need it it's only for the button
+  */
 
   const history = useRef(JSON.parse(JSON.stringify([data])))
   const filteredHistory = useRef(JSON.parse(JSON.stringify([data])))
