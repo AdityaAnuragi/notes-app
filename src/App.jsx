@@ -218,7 +218,7 @@ function App() {
   }
 
   function canIRedo(e) {
-    if(e.key === "y" && e.ctrlKey && pointer !== -1) {
+    if((e.key === "y" || (e.key === "Z" && e.shiftKey) ) && e.ctrlKey && pointer !== -1) {
       e.preventDefault()
       handleRedo()
     }
