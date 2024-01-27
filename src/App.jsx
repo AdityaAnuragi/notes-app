@@ -6,7 +6,7 @@ function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "a" },
-    { category: { isCheckBox: true, isChecked: false }, data: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis hic, odit " },
+    { category: { isCheckBox: true, isChecked: false }, data: "Lorem ipsum dolor sit amet." },
     { category: { isCheckBox: true, isChecked: true }, data: "This is the second checkbox" },
     { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
   ])
@@ -283,16 +283,20 @@ function App() {
                     <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
                     <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
-                  <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
-                  <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                  <div className="twoButtonContainer">
+                    <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
+                    <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                  </div>
                 </div>
               )
             }
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
                 <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
-                <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
-                <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                <div className="twoButtonContainer">
+                  <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
+                  <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                </div>
               </div>
             )
           })}
