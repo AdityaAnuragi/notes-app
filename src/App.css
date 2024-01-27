@@ -100,6 +100,7 @@ textarea:focus-visible {
 .deleteButton {
   opacity: 0;
   margin-top: 1px;
+  margin-right: 3px;
   /* width: calc(20px*3.5); originally 20px */
   /* height: calc(16px*3.5); originally 16px */
 }
