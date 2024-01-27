@@ -284,8 +284,8 @@ function App() {
                     <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
                   <div className="twoButtonContainer">
-                    <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
-                    <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                    <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} >+</button>
+                    <button className="listItemButtons" onClick={() => deleteElement(index)} >Del</button>
                   </div>
                 </div>
               )
@@ -294,8 +294,8 @@ function App() {
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
                 <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 <div className="twoButtonContainer">
-                  <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
-                  <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
+                  <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} >+</button>
+                  <button className="listItemButtons" onClick={() => deleteElement(index)} >Del</button>
                 </div>
               </div>
             )
