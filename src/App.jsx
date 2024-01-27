@@ -68,9 +68,16 @@ function App() {
     setPointer(-1)
   }
 
-  function handleCtrlEnter(e, index) {
-    const preText = filteredHistory.current[filteredHistory.current.length + pointer][index].data.slice(0, e.target.selectionStart)
-    const postText = filteredHistory.current[filteredHistory.current.length + pointer][index].data.slice(e.target.selectionStart)
+  function handleCtrlEnter(index) {
+
+    const textareaArr = document.getElementsByTagName("textarea")
+    const element = textareaArr[index]
+
+    indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
+
+
+    const preText = filteredHistory.current[filteredHistory.current.length + pointer][index].data.slice(0, element.selectionStart)
+    const postText = filteredHistory.current[filteredHistory.current.length + pointer][index].data.slice(element.selectionStart)
     createNewElement(index + 1, postText, preText)
   }
 
@@ -89,8 +96,11 @@ function App() {
 
     else if (e.key === "Enter" && e.ctrlKey) { // enter new element
       e.preventDefault()
-      indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
-      handleCtrlEnter(e, index)
+
+      // the below change to the ref was moved to the function "handleCtrlEnter" so that the shortcut and the UI can focus on new element
+      // indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
+
+      handleCtrlEnter(index)
     }
 
     else if (e.key === "\\" && e.ctrlKey) { // toggle the checkbox (ticked or unticked)
@@ -280,6 +290,7 @@ function App() {
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
                 <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
+                <button className="deleteButton" onClick={() => handleCtrlEnter(index)} >+</button>
                 <button className="deleteButton" onClick={() => deleteElement(index)} >Del</button>
               </div>
             )
