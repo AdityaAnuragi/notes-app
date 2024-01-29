@@ -184,6 +184,11 @@ function App() {
   function callbackForRef(node, index) {
     if (!node) return
 
+    if(indexOfCurrentlyFocusedElement.current === index) {
+      node?.focus()
+      node?.setSelectionRange(node.value.length, node.value.length)
+    }
+
     if (index === filteredHistory.current[filteredHistory.current.length + pointer].length - 1 && wasListItemTextAreaUsed.current) { // focus on the last element if + List item text area was used
       handleFocusOnLastElementWithAddButtonClick(node)
     }
