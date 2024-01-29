@@ -315,7 +315,7 @@ function App() {
             <button onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} >Undo</button>
             <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
           </div>
-          <button>Del Note</button>
+          <button>Close</button>
         </footer>
       </div>
     </div>
