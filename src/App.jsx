@@ -328,14 +328,16 @@ function App() {
               </Tooltip>
             </button> {/*undo button */}
 
-            <MyToolTipButton
-              className="roundedButton"
-              onClick={handleRedo}
-              disabled={pointer === -1}
-              style={{ cursor: pointer === -1 ? "not-allowed" : "auto" }}
-            >
-              <i className="fa-solid fa-rotate-right"></i>
-            </MyToolTipButton>
+            <Tooltip label="Y" position="top" offset={-12} >
+              <MyToolTipButton
+                className="roundedButton"
+                onClick={handleRedo}
+                disabled={pointer === -1}
+                style={{ cursor: pointer === -1 ? "not-allowed" : "auto" }}
+              >
+                <i className="fa-solid fa-rotate-right"></i>
+              </MyToolTipButton>
+            </Tooltip>
 
           </div>
           <button>Close</button>

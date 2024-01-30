@@ -1,10 +1,12 @@
-function MyToolTipButton(props) {
+import { forwardRef } from 'react'
+
+const MyToolTipButton = forwardRef((props,ref) => {
   return (
-    <button {...props} >
+    <button ref={ref} {...props} >
       {props.children}
     </button>
   )
-}
+})
 
 export {
   MyToolTipButton
