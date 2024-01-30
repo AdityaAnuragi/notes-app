@@ -33,7 +33,7 @@
 
   .listItemButtons{
     width: calc(20px*3); /*originally 20px */
-    height: calc(16px*3); /* originally 16px */
+    height: calc(20px*3); /* originally 16px */
   }
 }
 
@@ -129,6 +129,11 @@ button {
 
 button:hover {
   background-color: rgba(128, 128, 128,0.3);
+}
+
+i {
+  width: 40px;
+  height: 40px;
 }
 
 .roundedButton {

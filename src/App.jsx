@@ -293,8 +293,8 @@ function App() {
                     <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
                   <div className="twoButtonContainer">
-                    <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button>
-                    <button className="listItemButtons" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button>
+                    <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button>
+                    <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button>
                   </div>
                 </div>
               )
