@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import '@mantine/core/styles.css';
 import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
-import { Tooltip, Button } from '@mantine/core'
+import { Tooltip } from '@mantine/core'
 function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
