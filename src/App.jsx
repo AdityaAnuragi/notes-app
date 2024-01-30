@@ -16,10 +16,10 @@ function App() {
 
 
   const wasListItemTextAreaUsed = useRef(false) // this holds the boolean value to represent if "+ List item" textarea was recently used
-  
+
   const indexOfElementToFocusAfterAddingOrRemovingItsCheckbox = useRef(false)
   // the above ref holds the index of the element that needs to be focused when the addOrRemoveTickBox button(to be made) is clicked or a ctrl slash is used
-  
+
   const indexOfElementToFocusAfterCtrlEnterOrDelete = useRef(false) // holds the index value of element focus after Ctrl + Enter
 
   const indexOfCurrentlyFocusedElement = useRef(false)
@@ -184,7 +184,7 @@ function App() {
   function callbackForRef(node, index) {
     if (!node) return
 
-    if(indexOfCurrentlyFocusedElement.current === index) {
+    if (indexOfCurrentlyFocusedElement.current === index) {
       node?.focus()
       node?.setSelectionRange(node.value.length, node.value.length)
     }
@@ -240,7 +240,7 @@ function App() {
 
   function canIUndo(e) {
     // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
-    if(e.key === "z" && e.ctrlKey) e.preventDefault()
+    if (e.key === "z" && e.ctrlKey) e.preventDefault()
     if (e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)) {
       console.log(`${e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)}`)
       console.log(e)
@@ -249,7 +249,7 @@ function App() {
   }
 
   function canIRedo(e) {
-    if((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey)e.preventDefault()
+    if ((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey) e.preventDefault()
     if ((e.key === "y" || (e.key === "Z" && e.shiftKey)) && e.ctrlKey && pointer !== -1) {
       handleRedo()
     }
@@ -312,8 +312,24 @@ function App() {
         <footer>
           <button className="roundedButton" onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} ><i className="fa-regular fa-square-check"></i></button>
           <div id="undoRedoContainer">
-            <button className="roundedButton" onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} ><i className="fa-solid fa-rotate-left"></i></button> {/*undo button */}
-            <button className="roundedButton" onClick={handleRedo} disabled={pointer === -1} ><i className="fa-solid fa-rotate-right"></i></button> {/*redo button */}
+
+            <button
+              className="roundedButton"
+              onClick={handleUndo}
+              disabled={pointer * -1 === filteredHistory.current.length}
+              style={{ cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }}
+            >
+              <i className="fa-solid fa-rotate-left"></i>
+            </button> {/*undo button */}
+
+            <button 
+              className="roundedButton" 
+              onClick={handleRedo} 
+              disabled={pointer === -1} 
+              style={{cursor : pointer === -1 ? "not-allowed" : "auto"}}
+            >
+              <i className="fa-solid fa-rotate-right"></i>
+            </button> {/*redo button */}
           </div>
           <button>Close</button>
         </footer>
