@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import '@mantine/core/styles.css';
 import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
-
+import { Tooltip, Button } from '@mantine/core'
 function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
@@ -319,14 +320,17 @@ function App() {
               disabled={pointer * -1 === filteredHistory.current.length}
               style={{ cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }}
             >
-              <i className="fa-solid fa-rotate-left"></i>
+              <Tooltip label="Z" position="top" offset={-5} >
+                <i className="fa-solid fa-rotate-left"></i>
+              </Tooltip>
             </button> {/*undo button */}
 
-            <button 
-              className="roundedButton" 
-              onClick={handleRedo} 
-              disabled={pointer === -1} 
-              style={{cursor : pointer === -1 ? "not-allowed" : "auto"}}
+            
+            <button
+              className="roundedButton"
+              onClick={handleRedo}
+              disabled={pointer === -1}
+              style={{ cursor: pointer === -1 ? "not-allowed" : "auto" }}
             >
               <i className="fa-solid fa-rotate-right"></i>
             </button> {/*redo button */}
@@ -336,7 +340,6 @@ function App() {
       </div>
     </div>
   )
-
 }
 
 export default App
