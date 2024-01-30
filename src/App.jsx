@@ -289,8 +289,8 @@ function App() {
                     <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
                   <div className="twoButtonContainer">
-                    <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} >+</button>
-                    <button className="listItemButtons" onClick={() => deleteElement(index)} >Del</button>
+                    <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button>
+                    <button className="listItemButtons" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button>
                   </div>
                 </div>
               )
@@ -299,8 +299,8 @@ function App() {
               <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
                 <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 <div className="twoButtonContainer">
-                  <button className="listItemButtons" onClick={() => handleCtrlEnter(index)} >+</button>
-                  <button className="listItemButtons" onClick={() => deleteElement(index)} >Del</button>
+                  <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> {/* + button */}
+                  <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> {/*delete button*/}
                 </div>
               </div>
             )
@@ -310,10 +310,10 @@ function App() {
           </div>
         </div>
         <footer>
-          <button onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} >CB</button>
+          <button className="roundedButton" onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} ><i className="fa-regular fa-square-check"></i></button>
           <div id="undoRedoContainer">
-            <button onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} >Undo</button>
-            <button onClick={handleRedo} disabled={pointer === -1} >Redo</button>
+            <button className="roundedButton" onClick={handleUndo} disabled={pointer * -1 === filteredHistory.current.length} ><i className="fa-solid fa-rotate-left"></i></button> {/*undo button */}
+            <button className="roundedButton" onClick={handleRedo} disabled={pointer === -1} ><i className="fa-solid fa-rotate-right"></i></button> {/*redo button */}
           </div>
           <button>Close</button>
         </footer>

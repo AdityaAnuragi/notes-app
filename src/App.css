@@ -120,3 +120,17 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+
+button {
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: transparent;
+}
+
+button:hover {
+  background-color: rgba(128, 128, 128,0.3);
+}
+
+.roundedButton {
+  border-radius: 30px;
+}
