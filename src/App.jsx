@@ -291,8 +291,27 @@ function App() {
                     <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                   </div>
                   <div className="twoButtonContainer">
-                    <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button>
-                    <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button>
+                    <TooltipButtonWrapper
+                      shortcut="Enter"
+                      buttonProps={{
+                        className: "listItemButtons roundedButton",
+                        onClick: () => handleCtrlEnter(index)
+                      }}
+                      logoName="fa-solid fa-plus"
+                      index={index}
+                      offset={{ mainAxis: -13, crossAxis: -10 }}
+                    />
+                    {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> */}
+                    <TooltipButtonWrapper
+                      shortcut="Shift+Enter"
+                      buttonProps={{
+                        className: "listItemButtons roundedButton",
+                        onClick: () => deleteElement(index)
+                      }}
+                      logoName="fa-solid fa-trash"
+                      index={index}
+                    />
+                    {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
                   </div>
                 </div>
               )
