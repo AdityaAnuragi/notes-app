@@ -5,18 +5,27 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
   const [isOpen, setIsOpen] = useState(false)
 
   function handleMouseEnter() {
-    if((document.getElementsByTagName("textarea")[index] === document.activeElement) || index === -1) {
+    if ((document.getElementsByTagName("textarea")[index] === document.activeElement) || index === -1) {
       setIsOpen(true)
     }
   }
 
   function handleMouseLeave() {
-    if(document.getElementsByTagName("textarea")[index] === document.activeElement || index === -1) {
+    if (document.getElementsByTagName("textarea")[index] === document.activeElement || index === -1) {
       setIsOpen(false)
     }
   }
 
   useEffect(() => {
+    function handleBlur() {
+      setIsOpen(false)
+    }
+    const currElement = document.getElementsByTagName("textarea")[index]
+    if (index !== -1) {
+      currElement.addEventListener("blur", handleBlur)
+    }
+
+
     function handleKeyDown(e) {
       const textareaCollection = document.getElementsByTagName("textarea")
       const isFocused = textareaCollection[index] === document.activeElement
@@ -37,6 +46,9 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
       window.removeEventListener("keyup", handleKeyUp)
+      if (index !== -1) {
+        currElement.removeEventListener("blue",handleBlur)
+      }
     }
 
   }, [index])
