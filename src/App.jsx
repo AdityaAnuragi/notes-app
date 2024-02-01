@@ -315,37 +315,26 @@ function App() {
           <button className="roundedButton" onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} ><i className="fa-regular fa-square-check"></i></button>
           <div id="undoRedoContainer">
 
-            <button
-              className="roundedButton"
-              onClick={handleUndo}
-              disabled={pointer * -1 === filteredHistory.current.length}
-              style={{ cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }}
-            >
-              <Tooltip label="Z" position="top" offset={-5} >
-                <i className="fa-solid fa-rotate-left"></i>
-              </Tooltip>
-            </button> {/*undo button */}
-
-            {/* <Tooltip label="Y" position="top" offset={-12} >
-              <MyToolTipButton
-                className="roundedButton"
-                onClick={handleRedo}
-                disabled={pointer === -1}
-                style={{ cursor: pointer === -1 ? "not-allowed" : "auto" }}
-              >
-                <i className="fa-solid fa-rotate-right"></i>
-              </MyToolTipButton>
-            </Tooltip> */}
-
-            <TooltipButtonWrapper 
-              shortcut="Y" 
-              buttonProps = {{
-                className:"roundedButton",
-                onClick:handleRedo,
-                disabled:pointer === -1,
-                style:{ cursor: pointer === -1 ? "not-allowed" : "auto" }
+            <TooltipButtonWrapper
+              shortcut="Z"
+              buttonProps={{
+                className: "roundedButton",
+                onClick: handleUndo,
+                disabled: pointer * -1 === filteredHistory.current.length,
+                style: { cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }
               }}
-              logoName = "fa-solid fa-rotate-right"
+              logoName="fa-solid fa-rotate-left"
+            />
+
+            <TooltipButtonWrapper
+              shortcut="Y"
+              buttonProps={{
+                className: "roundedButton",
+                onClick: handleRedo,
+                disabled: pointer === -1,
+                style: { cursor: pointer === -1 ? "not-allowed" : "auto" }
+              }}
+              logoName="fa-solid fa-rotate-right"
             />
 
             {/* Redo button */}
