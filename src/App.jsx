@@ -3,9 +3,7 @@ import '@mantine/core/styles.css';
 import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
 import { Tooltip } from '@mantine/core'
-
-import { MyToolTipButton } from "./components/tooltipButton";
-
+import { TooltipButtonWrapper } from "./components/tooltipButton"
 function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
@@ -328,7 +326,7 @@ function App() {
               </Tooltip>
             </button> {/*undo button */}
 
-            <Tooltip label="Y" position="top" offset={-12} >
+            {/* <Tooltip label="Y" position="top" offset={-12} >
               <MyToolTipButton
                 className="roundedButton"
                 onClick={handleRedo}
@@ -337,8 +335,20 @@ function App() {
               >
                 <i className="fa-solid fa-rotate-right"></i>
               </MyToolTipButton>
-            </Tooltip>
+            </Tooltip> */}
 
+            <TooltipButtonWrapper 
+              shortcut="Y" 
+              buttonProps = {{
+                className:"roundedButton",
+                onClick:handleRedo,
+                disabled:pointer === -1,
+                style:{ cursor: pointer === -1 ? "not-allowed" : "auto" }
+              }}
+              logoName = "fa-solid fa-rotate-right"
+            />
+
+            {/* Redo button */}
           </div>
           <button>Close</button>
         </footer>
