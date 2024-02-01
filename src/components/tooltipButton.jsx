@@ -22,9 +22,7 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
     }
 
     function handleKeyUp(e) {
-      const textareaCollection = document.getElementsByTagName("textarea")
-      const isFocused = textareaCollection[index] === document.activeElement
-      if (e.key === "Control" && (index === -1 || isFocused)) {
+      if (e.key === "Control") {
         setIsOpen(false)
       }
     }
