@@ -308,7 +308,7 @@ function App() {
                       onClick: () => handleCtrlEnter(index)
                     }}
                     logoName="fa-solid fa-plus"
-                    isFocused={indexOfCurrentlyFocusedElement.current === index}
+                    index={index}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> + button */}
                   <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> {/*delete button*/}
