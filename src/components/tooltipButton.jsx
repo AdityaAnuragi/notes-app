@@ -1,7 +1,7 @@
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 
-function TooltipButtonWrapper({ shortcut, position = "top", offset = -15, buttonProps, logoName }) {
+function TooltipButtonWrapper({ shortcut, position = "top", offset = -15, buttonProps, logoName, isFocused = true }) {
   const [isOpen, setIsOpen] = useState(false)
 
   function handleMouseEnter() {
@@ -14,13 +14,13 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -15, button
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.ctrlKey) {
+      if (e.ctrlKey && isFocused) {
         setIsOpen(true)
       }
     }
 
     function handleKeyUp(e) {
-      if (e.key === "Control") {
+      if (e.key === "Control" && isFocused) {
         setIsOpen(false)
       }
     }
