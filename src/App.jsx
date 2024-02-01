@@ -312,7 +312,15 @@ function App() {
           </div>
         </div>
         <footer>
-          <button className="roundedButton" onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} ><i className="fa-regular fa-square-check"></i></button>
+          <TooltipButtonWrapper
+            shortcut="/"
+            buttonProps={{
+              className: "roundedButton",
+              onClick: () => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)
+            }}
+            logoName="fa-regular fa-square-check"
+          />
+          {/* <button className="roundedButton" onClick={() => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)} ><i className="fa-regular fa-square-check"></i></button> */}
           <div id="undoRedoContainer">
 
             <TooltipButtonWrapper

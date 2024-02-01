@@ -47,7 +47,7 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -15, button
           onMouseOver={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={buttonProps.className}
-          onClick={buttonProps.onClick}
+          onClick={buttonProps.onClick} // not all elements have an onClick or styles (such as checkbox) but it's fine they're null here
           disabled={buttonProps.disabled}
           style={buttonProps.style}
         >
