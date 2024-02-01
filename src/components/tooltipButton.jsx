@@ -5,11 +5,15 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
   const [isOpen, setIsOpen] = useState(false)
 
   function handleMouseEnter() {
-    setIsOpen(true)
+    if((document.getElementsByTagName("textarea")[index] === document.activeElement) || index === -1) {
+      setIsOpen(true)
+    }
   }
 
   function handleMouseLeave() {
-    setIsOpen(false)
+    if(document.getElementsByTagName("textarea")[index] === document.activeElement || index === -1) {
+      setIsOpen(false)
+    }
   }
 
   useEffect(() => {
