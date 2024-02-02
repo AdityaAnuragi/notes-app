@@ -37,7 +37,7 @@ function App() {
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
-  console.log(`Pointer is ${pointer}`)
+  // console.log(`Pointer is ${pointer}`)
   // console.log(`was add list item used ${wasListItemTextAreaUsed.current}`)
   // console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
   // console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
@@ -244,8 +244,8 @@ function App() {
     // if(e.key === "z" && e.ctrlKey) console.log(`Inside canIUndo ${pointer*-1 !== filteredHistory.current.length}`)
     if (e.key === "z" && e.ctrlKey) e.preventDefault()
     if (e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)) {
-      console.log(`${e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)}`)
-      console.log(e)
+      // console.log(`${e.key === "z" && e.ctrlKey && (pointer * -1 !== filteredHistory.current.length)}`)
+      // console.log(e)
       handleUndo()
     }
   }
@@ -268,7 +268,7 @@ function App() {
 
   function handleOnFocus(index) {
     indexOfCurrentlyFocusedElement.current = index
-    console.log(`Index to focus ${indexOfCurrentlyFocusedElement.current}`)
+    // console.log(`Index to focus ${indexOfCurrentlyFocusedElement.current}`)
   }
 
   // console.log("Below, The filtered history is", filteredHistory.current)
@@ -278,6 +278,11 @@ function App() {
   // console.log(`index to focus after add or del CB ${indexOfElementToFocusAfterAddingOrRemovingItsCheckbox.current}`)
   // console.log(`index to focus after add or del ${indexOfElementToFocusAfterCtrlEnterOrDelete.current}`)
   // console.log("")
+
+  useEffect(() => {
+    console.log("A project by Aditya Anuragi")
+  },[])
+
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
