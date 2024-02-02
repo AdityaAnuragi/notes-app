@@ -51,7 +51,7 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
       }
     }
 
-  }, [index])
+  })
 
   return (
     <>
