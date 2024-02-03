@@ -1,17 +1,17 @@
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 
-function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1 }) {
+function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1,textAreaRefs }) {
   const [isOpen, setIsOpen] = useState(false)
-
+  // console.log(document.activeElement)
   function handleMouseEnter() {
-    if ((document.getElementsByTagName("textarea")[index] === document.activeElement) || index === -1) {
+    if ((textAreaRefs.current[index] === document.activeElement) || index === -1) {
       setIsOpen(true)
     }
   }
 
   function handleMouseLeave() {
-    if (document.getElementsByTagName("textarea")[index] === document.activeElement || index === -1) {
+    if ((textAreaRefs.current[index] === document.activeElement) || index === -1) {
       setIsOpen(false)
     }
   }
@@ -20,16 +20,14 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
     function handleBlur() {
       setIsOpen(false)
     }
-    const currElement = document.getElementsByTagName("textarea")[index]
+    const currElement = textAreaRefs.current[index]
     if (index !== -1) {
       currElement.addEventListener("blur", handleBlur)
     }
 
 
     function handleKeyDown(e) {
-      const textareaCollection = document.getElementsByTagName("textarea")
-      const isFocused = textareaCollection[index] === document.activeElement
-      if (e.ctrlKey && (index === -1 || isFocused)) {
+      if (e.ctrlKey && ((textAreaRefs.current[index] === document.activeElement) || index === -1)) {
         setIsOpen(true)
       }
     }
@@ -47,11 +45,11 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
       window.removeEventListener("keydown", handleKeyDown)
       window.removeEventListener("keyup", handleKeyUp)
       if (index !== -1) {
-        currElement.removeEventListener("blue",handleBlur)
+        currElement.removeEventListener("blur",handleBlur)
       }
     }
 
-  })
+  },[index])
 
   return (
     <>

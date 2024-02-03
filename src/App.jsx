@@ -35,6 +35,7 @@ function App() {
   const wasRedoJustClicked = useRef(false)
 
   const addNewItemTextAreaRef = useRef()
+  const textareaRef = useRef([])
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -73,7 +74,8 @@ function App() {
 
   function handleCtrlEnter(index) {
 
-    const textareaArr = document.getElementsByTagName("textarea")
+    const textareaArr = textareaRef.current
+    console.log("inside handleCtrlEnter",textareaArr)
     const element = textareaArr[index]
 
     indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
@@ -202,7 +204,7 @@ function App() {
     }
     else if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === filteredHistory.current[filteredHistory.current.length + pointer].length) {
       const addListItemTextArea = addNewItemTextAreaRef.current
-      addListItemTextArea.focus()
+      addListItemTextArea?.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
 
@@ -223,10 +225,17 @@ function App() {
   }
 
   useLayoutEffect(() => {
-    const collection = document.getElementsByClassName("textarea")
+    console.log(textareaRef.current)
+    const collection = textareaRef.current
     for (let i = 0; i < collection.length; i += 1) {
-      collection[i].style.height = "0px"
-      collection[i].style.height = `${(collection[i].scrollHeight) + 4}px`
+      if (collection[i]) {
+        collection[i].style.height = "0px"
+        collection[i].style.height = `${(collection[i].scrollHeight) + 4}px`
+      }
+    }
+    if (addNewItemTextAreaRef.current) {
+      addNewItemTextAreaRef.current.style.height = "0px"
+      addNewItemTextAreaRef.current.style.height = `${(addNewItemTextAreaRef.current.scrollHeight) + 4}px`
     }
   }, [data, pointer])
 
@@ -283,9 +292,9 @@ function App() {
   useEffect(() => {
     console.log("A project by Aditya Anuragi")
   }, [])
-
+  const aVar = useRef();
   return (
-    <div id="spanningTheWholeViewWidthAndHeightWrapper">
+    <div id="spanningTheWholeViewWidthAndHeightWrapper" ref={aVar}>
       <div id="individualNoteContainer" >
         <div id="elementContainer">
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
@@ -293,7 +302,10 @@ function App() {
               <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
                 <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
                   {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
-                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
+                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => {
+                    callbackForRef(node, index)
+                    textareaRef.current[index] = node
+                  }} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 </div>
                 <div className="twoButtonContainer">
                   <TooltipButtonWrapper
@@ -305,6 +317,7 @@ function App() {
                     logoName="fa-solid fa-plus"
                     index={index}
                     offset={{ mainAxis: -13, crossAxis: -10 }}
+                    textAreaRefs={textareaRef}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> */}
                   <TooltipButtonWrapper
@@ -315,6 +328,7 @@ function App() {
                     }}
                     logoName="fa-solid fa-trash"
                     index={index}
+                    textAreaRefs = {textareaRef}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
                 </div>
@@ -322,7 +336,10 @@ function App() {
             )
           })}
           <div className="textAreaContainer">
-            <textarea ref={addNewItemTextAreaRef} id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+            <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={(node) => {
+              handleFocusingAddListItemWhenNoElementsInState(node)
+              addNewItemTextAreaRef.current = node
+            }} onChange={handleAddListItem} />
           </div>
         </div>
         <footer>
@@ -333,6 +350,7 @@ function App() {
               onClick: () => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)
             }}
             logoName="fa-regular fa-square-check"
+            textAreaRefs = {textareaRef}
           />
           <div id="undoRedoContainer">
 
@@ -345,6 +363,7 @@ function App() {
                 style: { cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-left"
+              textAreaRefs = {textareaRef}
             />
 
             <TooltipButtonWrapper
@@ -356,6 +375,7 @@ function App() {
                 style: { cursor: pointer === -1 ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-right"
+              textAreaRefs = {textareaRef}
             />
 
             {/* Redo button */}
