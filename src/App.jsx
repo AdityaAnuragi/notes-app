@@ -280,49 +280,19 @@ function App() {
 
   useEffect(() => {
     console.log("A project by Aditya Anuragi")
-  },[])
+  }, [])
 
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper">
       <div id="individualNoteContainer" >
         <div id="elementContainer">
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
-            if (element.category.isCheckBox) {
-              return (
-                <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
-                  <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
-                    <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />
-                    <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
-                  </div>
-                  <div className="twoButtonContainer">
-                    <TooltipButtonWrapper
-                      shortcut="Enter"
-                      buttonProps={{
-                        className: "listItemButtons roundedButton",
-                        onClick: () => handleCtrlEnter(index)
-                      }}
-                      logoName="fa-solid fa-plus"
-                      index={index}
-                      offset={{ mainAxis: -13, crossAxis: -10 }}
-                    />
-                    {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> */}
-                    <TooltipButtonWrapper
-                      shortcut="Shift+Enter"
-                      buttonProps={{
-                        className: "listItemButtons roundedButton",
-                        onClick: () => deleteElement(index)
-                      }}
-                      logoName="fa-solid fa-trash"
-                      index={index}
-                    />
-                    {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
-                  </div>
-                </div>
-              )
-            }
             return (
-              <div className="textAreaContainer" key={index} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }} >
-                <textarea style={{ resize: "none", display: "block" }} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
+              <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
+                <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
+                  {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
+                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => callbackForRef(node, index)} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
+                </div>
                 <div className="twoButtonContainer">
                   <TooltipButtonWrapper
                     shortcut="Enter"
@@ -334,6 +304,7 @@ function App() {
                     index={index}
                     offset={{ mainAxis: -13, crossAxis: -10 }}
                   />
+                  {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> */}
                   <TooltipButtonWrapper
                     shortcut="Shift+Enter"
                     buttonProps={{
@@ -343,9 +314,7 @@ function App() {
                     logoName="fa-solid fa-trash"
                     index={index}
                   />
-
-                  {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button>  */}
-                  {/*delete button*/}
+                  {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
                 </div>
               </div>
             )
