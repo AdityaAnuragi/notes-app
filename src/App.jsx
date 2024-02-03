@@ -34,6 +34,8 @@ function App() {
 
   const wasRedoJustClicked = useRef(false)
 
+  const addNewItemTextAreaRef = useRef()
+
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
   // console.log(`Pointer is ${pointer}`)
@@ -199,7 +201,7 @@ function App() {
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
     else if (indexOfElementToFocusAfterCtrlEnterOrDelete.current === filteredHistory.current[filteredHistory.current.length + pointer].length) {
-      const addListItemTextArea = document.getElementById("addNewItemTextArea")
+      const addListItemTextArea = addNewItemTextAreaRef.current
       addListItemTextArea.focus()
       indexOfElementToFocusAfterCtrlEnterOrDelete.current = false
     }
@@ -320,7 +322,7 @@ function App() {
             )
           })}
           <div className="textAreaContainer">
-            <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
+            <textarea ref={addNewItemTextAreaRef} id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={handleFocusingAddListItemWhenNoElementsInState} onChange={handleAddListItem} />
           </div>
         </div>
         <footer>
