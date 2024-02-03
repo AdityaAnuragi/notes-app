@@ -75,7 +75,7 @@ function App() {
   function handleCtrlEnter(index) {
 
     const textareaArr = textareaRef.current
-    console.log("inside handleCtrlEnter",textareaArr)
+    // console.log("inside handleCtrlEnter",textareaArr)
     const element = textareaArr[index]
 
     indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
@@ -225,7 +225,7 @@ function App() {
   }
 
   useLayoutEffect(() => {
-    console.log(textareaRef.current)
+    // console.log(textareaRef.current)
     const collection = textareaRef.current
     for (let i = 0; i < collection.length; i += 1) {
       if (collection[i]) {
