@@ -36,7 +36,7 @@ function App() {
 
   const addNewItemTextAreaRef = useRef()
   const textareaRef = useRef([])
-  const idElementContainerRed = useRef()
+  const idElementContainerRef = useRef()
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -74,7 +74,7 @@ function App() {
   }
 
   function getTextareaElement(index) {
-    const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
+    const inputAndTextareaArr = idElementContainerRef.current.children[index].children[0].children
     return inputAndTextareaArr[inputAndTextareaArr.length-1]
   }
 
@@ -306,7 +306,7 @@ function App() {
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper" ref={aVar}>
       <div id="individualNoteContainer" >
-        <div id="elementContainer" ref={idElementContainerRed}>
+        <div id="elementContainer" ref={idElementContainerRef}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
