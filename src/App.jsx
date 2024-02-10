@@ -74,8 +74,6 @@ function App() {
   }
 
   function handleCtrlEnter(index) {
-
-    const textareaArr = textareaRef.current
     // console.log("inside handleCtrlEnter",textareaArr)
     const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
     // console.log(inputAndTextareaArr[inputAndTextareaArr.length-1])
