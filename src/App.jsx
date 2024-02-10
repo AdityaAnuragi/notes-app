@@ -73,14 +73,19 @@ function App() {
     setPointer(-1)
   }
 
+  function getTextareaElement(index) {
+    const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
+    return inputAndTextareaArr[inputAndTextareaArr.length-1]
+  }
+
   function handleCtrlEnter(index) {
     // console.log("inside handleCtrlEnter",textareaArr)
-    const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
+    // const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
     // console.log(inputAndTextareaArr[inputAndTextareaArr.length-1])
     // console.log(textareaArr[index])
     // console.log(inputAndTextareaArr[inputAndTextareaArr.length-1] === textareaArr[index])
     // console.log(idElementContainerRed.current.children[index].children[0].children[0] === textareaArr[index])
-    const element = inputAndTextareaArr[inputAndTextareaArr.length-1]
+    const element = getTextareaElement(index)
 
     indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
 
