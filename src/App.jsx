@@ -36,6 +36,7 @@ function App() {
 
   const addNewItemTextAreaRef = useRef()
   const textareaRef = useRef([])
+  const idElementContainerRed = useRef()
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -76,7 +77,12 @@ function App() {
 
     const textareaArr = textareaRef.current
     // console.log("inside handleCtrlEnter",textareaArr)
-    const element = textareaArr[index]
+    const inputAndTextareaArr = idElementContainerRed.current.children[index].children[0].children
+    // console.log(inputAndTextareaArr[inputAndTextareaArr.length-1])
+    // console.log(textareaArr[index])
+    // console.log(inputAndTextareaArr[inputAndTextareaArr.length-1] === textareaArr[index])
+    // console.log(idElementContainerRed.current.children[index].children[0].children[0] === textareaArr[index])
+    const element = inputAndTextareaArr[inputAndTextareaArr.length-1]
 
     indexOfElementToFocusAfterCtrlEnterOrDelete.current = index + 1
 
@@ -291,12 +297,13 @@ function App() {
 
   useEffect(() => {
     console.log("A project by Aditya Anuragi")
+    // console.log(idElementContainerRed.current.children[0].children[0].children)
   }, [])
   const aVar = useRef();
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper" ref={aVar}>
       <div id="individualNoteContainer" >
-        <div id="elementContainer">
+        <div id="elementContainer" ref={idElementContainerRed}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
