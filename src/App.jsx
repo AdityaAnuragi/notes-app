@@ -36,7 +36,6 @@ function App() {
 
   const addNewItemTextAreaRef = useRef()
   const textareaRef = useRef([])
-  const idElementContainerRef = useRef()
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -74,8 +73,7 @@ function App() {
   }
 
   function getTextareaElement(index) {
-    const inputAndTextareaArr = idElementContainerRef.current.children[index].children[0].children
-    return inputAndTextareaArr[inputAndTextareaArr.length-1]
+    return textareaRef.current[index]
   }
 
   function handleCtrlEnter(index) {
@@ -98,6 +96,7 @@ function App() {
   function handleCtrlSlash(index) {
     const duplicate = JSON.parse(JSON.stringify(filteredHistory.current[filteredHistory.current.length + pointer]))
     duplicate[index].category.isCheckBox = !(duplicate[index].category.isCheckBox)
+    duplicate[index].category.isChecked = false
     updatingWasredojustclickedHistoryPointer()
     setData(duplicate)
   }
@@ -306,7 +305,7 @@ function App() {
   return (
     <div id="spanningTheWholeViewWidthAndHeightWrapper" ref={aVar}>
       <div id="individualNoteContainer" >
-        <div id="elementContainer" ref={idElementContainerRef}>
+        <div id="elementContainer">
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
               <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
