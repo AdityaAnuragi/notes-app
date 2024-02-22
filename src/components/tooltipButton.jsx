@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1,textAreaRefs }) {
   const [isOpen, setIsOpen] = useState(false)
   // console.log(document.activeElement)
+  // receive ref to textarea
   function handleMouseEnter() {
     if ((textAreaRefs.current[index] === document.activeElement) || index === -1) {
       setIsOpen(true)
