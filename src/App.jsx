@@ -312,7 +312,7 @@ function App() {
                   {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
                   <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => {
                     callbackForRef(node, index)
-                    textareas[index] = node
+                    textareas.push(node)
                   }} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 </div>
                 <div className="twoButtonContainer">
