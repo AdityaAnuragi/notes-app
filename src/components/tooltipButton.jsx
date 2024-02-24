@@ -1,18 +1,18 @@
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 
-function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1,textAreaRefs }) {
+function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1, textareas }) {
   const [isOpen, setIsOpen] = useState(false)
   // console.log(document.activeElement)
   // receive ref to textarea element
   function handleMouseEnter() {
-    if ((textAreaRefs[index] === document.activeElement) || index === -1) {
+    if ((textareas[index] === document.activeElement) || index === -1) {
       setIsOpen(true)
     }
   }
 
   function handleMouseLeave() {
-    if ((textAreaRefs[index] === document.activeElement) || index === -1) {
+    if ((textareas[index] === document.activeElement) || index === -1) {
       setIsOpen(false)
     }
   }
@@ -21,14 +21,14 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
     function handleBlur() {
       setIsOpen(false)
     }
-    const currElement = textAreaRefs[index]
+    const currElement = textareas[index]
     if (index !== -1) {
       currElement.addEventListener("blur", handleBlur)
     }
 
 
     function handleKeyDown(e) {
-      if (e.ctrlKey && ((textAreaRefs[index] === document.activeElement) || index === -1)) {
+      if (e.ctrlKey && ((textareas[index] === document.activeElement) || index === -1)) {
         setIsOpen(true)
       }
     }

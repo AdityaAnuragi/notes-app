@@ -34,7 +34,7 @@ function App() {
   const wasRedoJustClicked = useRef(false)
 
   const addNewItemTextAreaRef = useRef()
-  const textareaRef = []
+  const textareas = []
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -72,7 +72,7 @@ function App() {
   }
 
   function getTextareaElement(index) {
-    return textareaRef[index]
+    return textareas[index]
   }
 
   function handleCtrlEnter(index) {
@@ -233,7 +233,7 @@ function App() {
 
   useLayoutEffect(() => {
     // console.log(textareaRef.current)
-    const collection = textareaRef
+    const collection = textareas
     for (let i = 0; i < collection.length; i += 1) {
       if (collection[i]) {
         collection[i].style.height = "0px"
@@ -312,7 +312,7 @@ function App() {
                   {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
                   <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => {
                     callbackForRef(node, index)
-                    textareaRef[index] = node
+                    textareas[index] = node
                   }} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 </div>
                 <div className="twoButtonContainer">
@@ -325,7 +325,7 @@ function App() {
                     logoName="fa-solid fa-plus"
                     index={index}
                     offset={{ mainAxis: -13, crossAxis: -10 }}
-                    textAreaRefs={textareaRef}
+                    textareas={textareas}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => handleCtrlEnter(index)} ><i className="fa-solid fa-plus"></i></button> */}
                   <TooltipButtonWrapper
@@ -336,7 +336,7 @@ function App() {
                     }}
                     logoName="fa-solid fa-trash"
                     index={index}
-                    textAreaRefs = {textareaRef}
+                    textareas = {textareas}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
                 </div>
@@ -358,7 +358,7 @@ function App() {
               onClick: () => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)
             }}
             logoName="fa-regular fa-square-check"
-            textAreaRefs = {textareaRef}
+            textareas = {textareas}
           />
           <div id="undoRedoContainer">
 
@@ -371,7 +371,7 @@ function App() {
                 style: { cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-left"
-              textAreaRefs = {textareaRef}
+              textareas = {textareas}
             />
 
             <TooltipButtonWrapper
@@ -383,7 +383,7 @@ function App() {
                 style: { cursor: pointer === -1 ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-right"
-              textAreaRefs = {textareaRef}
+              textareas = {textareas}
             />
 
             {/* Redo button */}
