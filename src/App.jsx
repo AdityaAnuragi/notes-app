@@ -6,10 +6,9 @@ import { TooltipButtonWrapper } from "./components/tooltipButton"
 function App() {
   // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
-    { category: { isCheckBox: false, isChecked: false }, data: "a" },
-    { category: { isCheckBox: true, isChecked: false }, data: "Lorem ipsum dolor sit amet." },
-    { category: { isCheckBox: true, isChecked: true }, data: "This is the second checkbox" },
-    { category: { isCheckBox: false, isChecked: false }, data: "First line\nSecond line" }
+    { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
+    { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
+    { category: { isCheckBox: false, isChecked: false }, data: "regular note" }
   ])
 
   const [pointer, setPointer] = useState(-1)
