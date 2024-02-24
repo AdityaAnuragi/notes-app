@@ -34,7 +34,7 @@ function App() {
   const wasRedoJustClicked = useRef(false)
 
   const addNewItemTextAreaRef = useRef()
-  const textareaRef = useRef([])
+  const textareaRef = []
 
   // console.log("Above, filtered history is ", filteredHistory.current)
   // console.log("Above, history is ", history.current)
@@ -72,7 +72,7 @@ function App() {
   }
 
   function getTextareaElement(index) {
-    return textareaRef.current[index]
+    return textareaRef[index]
   }
 
   function handleCtrlEnter(index) {
@@ -233,7 +233,7 @@ function App() {
 
   useLayoutEffect(() => {
     // console.log(textareaRef.current)
-    const collection = textareaRef.current
+    const collection = textareaRef
     for (let i = 0; i < collection.length; i += 1) {
       if (collection[i]) {
         collection[i].style.height = "0px"
@@ -312,7 +312,7 @@ function App() {
                   {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
                   <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => {
                     callbackForRef(node, index)
-                    textareaRef.current[index] = node
+                    textareaRef[index] = node
                   }} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 </div>
                 <div className="twoButtonContainer">

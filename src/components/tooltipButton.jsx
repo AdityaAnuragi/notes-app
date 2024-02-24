@@ -6,13 +6,13 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
   // console.log(document.activeElement)
   // receive ref to textarea element
   function handleMouseEnter() {
-    if ((textAreaRefs.current[index] === document.activeElement) || index === -1) {
+    if ((textAreaRefs[index] === document.activeElement) || index === -1) {
       setIsOpen(true)
     }
   }
 
   function handleMouseLeave() {
-    if ((textAreaRefs.current[index] === document.activeElement) || index === -1) {
+    if ((textAreaRefs[index] === document.activeElement) || index === -1) {
       setIsOpen(false)
     }
   }
@@ -21,14 +21,14 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
     function handleBlur() {
       setIsOpen(false)
     }
-    const currElement = textAreaRefs.current[index]
+    const currElement = textAreaRefs[index]
     if (index !== -1) {
       currElement.addEventListener("blur", handleBlur)
     }
 
 
     function handleKeyDown(e) {
-      if (e.ctrlKey && ((textAreaRefs.current[index] === document.activeElement) || index === -1)) {
+      if (e.ctrlKey && ((textAreaRefs[index] === document.activeElement) || index === -1)) {
         setIsOpen(true)
       }
     }
