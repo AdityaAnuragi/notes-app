@@ -4,7 +4,6 @@ import "./App.css"
 import useThrottle from "./customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./components/tooltipButton"
 function App() {
-  // window.addEventListener("keydown",(e)=>console.log(e));
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
     { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
