@@ -2,7 +2,7 @@ import note from "./NoteInHomePage.module.css"
 
 function NoteInHomePage() {
   const data = "first\nsecond\nthird\nfourth\nfifth"
-
+  
   function getStringWithReducedInfo(str) {
     if(str.length > 84) {
       return str.slice(0,)

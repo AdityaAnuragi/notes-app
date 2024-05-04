@@ -1,7 +1,6 @@
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 import openNoteStyle from "./OpenNote.module.css"
-import '@mantine/core/styles.css';
 function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, buttonProps, logoName, index = -1, textareas }) {
   const [isOpen, setIsOpen] = useState(false)
   // console.log(document.activeElement)
