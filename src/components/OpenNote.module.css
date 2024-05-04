@@ -1,20 +1,22 @@
-#spanningTheWholeViewWidthAndHeightWrapper {
+/* i button textarea input */
+
+.spanningTheWholeViewWidthAndHeightWrapper {
   display: flex;
 }
 
 @media (min-width: 500px) {
-  #individualNoteContainer {
+  .individualNoteContainer {
     min-width: 500px;
     max-width: 500px;
     /* this is to make sure that width remains constant otherwise it'll look bad */
   }
-  #spanningTheWholeViewWidthAndHeightWrapper {
+  .spanningTheWholeViewWidthAndHeightWrapper {
     align-items: center;
   }
 }
 
 @media (max-width: 500px) {
-  #individualNoteContainer {
+  .individualNoteContainer {
     min-width: 300px;
     max-width: 300px;
     /* width: 300px; this is to make sure that width remains constant otherwise it'll look bad */ 
@@ -23,10 +25,10 @@
 }
 
 @media (min-width : 426px) {
-  textarea,button {
+  .textarea,.button {
     font-size: 28px;
   }
-  input {
+  .input {
     width: 30px;
     height: 30px;
   }
@@ -37,8 +39,9 @@
   }
 }
 
-body {
+.body {
   margin: 0px;
+  /* background-color: red; */
 }
 
 /* input {
@@ -46,14 +49,14 @@ body {
   height: 30px;
 } */
 
-#spanningTheWholeViewWidthAndHeightWrapper {
+.spanningTheWholeViewWidthAndHeightWrapper {
   height: 100vh;
   /* display: flex; */
   /* align-items: center; */
   justify-content: center;
 }
 
-#individualNoteContainer {
+.individualNoteContainer {
   border: 2px solid black;
   border-radius: 8px;
   width: fit-content;
@@ -70,7 +73,7 @@ body {
 
 }
 
-textarea {
+.textarea {
   resize: none;
   width: max-content;
   padding: 0px;
@@ -82,7 +85,7 @@ textarea {
   font-size: 32px;
 } */
 
-textarea:focus-visible {
+.textarea:focus-visible {
   outline: 0px;
   /* border-color : rgba(0,0,0,1); */
 }
@@ -94,7 +97,7 @@ textarea:focus-visible {
   border-color: rgba(0,0,0,0);
 }
 
-.textAreaContainer:has(textarea:focus-visible) {
+.textAreaContainer:has(.textarea:focus-visible) {
   border-color: rgba(0,0,0,1);
 }
 
@@ -111,27 +114,27 @@ textarea:focus-visible {
 }
 
 
-#elementContainer {
+.elementContainer {
   max-height: 500px;
   overflow-y: auto;
 }
 
-footer {
+.footer {
   display: flex;
   justify-content: space-between;
 }
 
-button {
+.button {
   background-color: transparent;
   border-radius: 5px;
   border-color: transparent;
 }
 
-button:hover {
+.button:hover {
   background-color: rgba(128, 128, 128,0.3);
 }
 
-i {
+.i {
   width: 40px;
   height: 40px;
 }
