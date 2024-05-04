@@ -3,10 +3,10 @@
 // import "./App.css"
 // import useThrottle from "./customHooks/useThrottle"
 // import { TooltipButtonWrapper } from "./components/tooltipButton"
-// import { OpenNote } from "./components/OpenNote"
-import { NoteInHomePage } from "./components/NoteInHomePage"
+import { OpenNote } from "./components/OpenNote"
+// import { NoteInHomePage } from "./components/NoteInHomePage"
 function App() {
-  return <NoteInHomePage />
+  return <OpenNote />
 }
 
 export default App

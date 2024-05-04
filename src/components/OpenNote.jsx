@@ -301,24 +301,25 @@ function OpenNote() {
   }, [])
   const aVar = useRef();
   return (
-    <div id="spanningTheWholeViewWidthAndHeightWrapper" ref={aVar}>
-      <div id="individualNoteContainer" >
-        <div id="elementContainer">
+    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar}>
+      <div className={openNoteStyle.individualNoteContainer} >
+        <div className={openNoteStyle.elementContainer}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
-              <div className="textAreaContainer" key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
-                <div className="inputAndTextAreaSubWrapper" style={{ display: "flex", alignItems: "flex-start" }}>
-                  {element.category.isCheckBox && <input type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
-                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className="textarea" ref={(node) => {
+              <div className={openNoteStyle.textAreaContainer} key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
+                <div className={openNoteStyle.inputAndTextAreaSubWrapper} style={{ display: "flex", alignItems: "flex-start" }}>
+                  {element.category.isCheckBox && <input className={openNoteStyle.input} type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
+                  <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className={openNoteStyle.textarea} ref={(node) => {
                     callbackForRef(node, index)
                     textareas.push(node)
                   }} onChange={(e) => handleTextChange(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} onFocus={() => handleOnFocus(index)} />
                 </div>
-                <div className="twoButtonContainer">
+                <div className={openNoteStyle.twoButtonContainer}>
                   <TooltipButtonWrapper
                     shortcut="Enter"
                     buttonProps={{
-                      className: "listItemButtons roundedButton",
+                      // className: "listItemButtons roundedButton ",
+                      className: openNoteStyle.listItemButtons + " " + openNoteStyle.roundedButton + " ",
                       onClick: () => handleCtrlEnter(index)
                     }}
                     logoName="fa-solid fa-plus"
@@ -330,7 +331,8 @@ function OpenNote() {
                   <TooltipButtonWrapper
                     shortcut="Shift+Enter"
                     buttonProps={{
-                      className: "listItemButtons roundedButton",
+                      // className: "listItemButtons roundedButton ",
+                      className: openNoteStyle.listItemButtons + " " + openNoteStyle.roundedButton + " ",
                       onClick: () => deleteElement(index)
                     }}
                     logoName="fa-solid fa-trash"
@@ -342,29 +344,31 @@ function OpenNote() {
               </div>
             )
           })}
-          <div className="textAreaContainer">
-            <textarea id="addNewItemTextArea" className="textarea" placeholder="+ List item" ref={(node) => {
+          <div className={openNoteStyle.textAreaContainer}>
+            <textarea id="addNewItemTextArea" className={openNoteStyle.textarea} placeholder="+ List item" ref={(node) => {
               handleFocusingAddListItemWhenNoElementsInState(node)
               addNewItemTextAreaRef.current = node
             }} onChange={handleAddListItem} />
           </div>
         </div>
-        <footer>
+        <footer className={openNoteStyle.footer}>
           <TooltipButtonWrapper
             shortcut="/"
             buttonProps={{
-              className: "roundedButton",
+              // className: "roundedButton ",
+              className: openNoteStyle.roundedButton + " ",
               onClick: () => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)
             }}
             logoName="fa-regular fa-square-check"
             textareas = {textareas}
           />
-          <div id="undoRedoContainer">
+          <div className={openNoteStyle.undoRedoContainer}>
 
             <TooltipButtonWrapper
               shortcut="Z"
               buttonProps={{
-                className: "roundedButton",
+                className: openNoteStyle.roundedButton + " ",
+                // className: "roundedButton ",
                 onClick: handleUndo,
                 disabled: pointer * -1 === filteredHistory.current.length,
                 style: { cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }
@@ -376,7 +380,7 @@ function OpenNote() {
             <TooltipButtonWrapper
               shortcut="Y"
               buttonProps={{
-                className: "roundedButton",
+                className: openNoteStyle.roundedButton + " ",
                 onClick: handleRedo,
                 disabled: pointer === -1,
                 style: { cursor: pointer === -1 ? "not-allowed" : "auto" }
@@ -387,7 +391,7 @@ function OpenNote() {
 
             {/* Redo button */}
           </div>
-          <button>Close</button>
+          <button className={openNoteStyle.button}>Close</button>
         </footer>
       </div>
     </div>
