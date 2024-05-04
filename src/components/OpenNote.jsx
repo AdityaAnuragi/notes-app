@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import '@mantine/core/styles.css';
-import "./OpenNote.css"
+import  openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
 function OpenNote() {

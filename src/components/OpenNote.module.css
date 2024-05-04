@@ -37,8 +37,9 @@
   }
 }
 
-body {
+.body {
   margin: 0px;
+  /* background-color: red; */
 }
 
 /* input {
