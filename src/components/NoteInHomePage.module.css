@@ -2,6 +2,9 @@
   resize: none;
   font-size: 28px;
   line-height: 1.1;
+  max-height: 130px;
+  overflow-y: hidden;
+  /* height: auto; */
   /* box-sizing: content-box;
   font-family: monospace; */
 }

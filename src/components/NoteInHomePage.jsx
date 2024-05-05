@@ -21,7 +21,7 @@ function NoteInHomePage() {
   
   return (
     <>
-      <textarea className={note.textarea} /*value={getStringWithReducedInfo(data)}*/ value={data} style={{height : `${28*1.2*4}px`}} />
+      <textarea className={note.textarea} /*value={getStringWithReducedInfo(data)}*/ value={data} rows={5} />
     </>
   )
 }
