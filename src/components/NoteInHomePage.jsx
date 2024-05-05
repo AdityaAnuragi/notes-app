@@ -2,6 +2,7 @@ import note from "./NoteInHomePage.module.css"
 
 function NoteInHomePage() {
   const data = "first\nsecond\nthird\nfourth\nfifth"
+  // const data = "123456789123456789"
   
   function getStringWithReducedInfo(str) {
     if(str.length > 84) {
@@ -20,7 +21,7 @@ function NoteInHomePage() {
   
   return (
     <>
-      <textarea className={note.textarea} value={getStringWithReducedInfo(data)} style={{height : `${28*1.1*4}px`}} />
+      <textarea className={note.textarea} /*value={getStringWithReducedInfo(data)}*/ value={data} style={{height : `${28*1.2*4}px`}} />
     </>
   )
 }

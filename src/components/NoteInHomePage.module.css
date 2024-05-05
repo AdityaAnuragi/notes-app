@@ -2,6 +2,6 @@
   resize: none;
   font-size: 28px;
   line-height: 1.1;
-  box-sizing: content-box;
-  font-family: monospace;
+  /* box-sizing: content-box;
+  font-family: monospace; */
 }
