@@ -78,6 +78,7 @@
   width: max-content;
   padding: 0px;
   border: none;
+  flex-grow: 1;
   /* border: 2px solid red; */
 }
 

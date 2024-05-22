@@ -306,7 +306,7 @@ function OpenNote() {
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
               <div className={openNoteStyle.textAreaContainer} key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
-                <div className={openNoteStyle.inputAndTextAreaSubWrapper} style={{ display: "flex", alignItems: "flex-start" }}>
+                <div className={openNoteStyle.inputAndTextAreaSubWrapper} style={{ display: "flex", alignItems: "flex-start" , flexGrow : "1" }}>
                   {element.category.isCheckBox && <input className={openNoteStyle.input} type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
                   <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className={openNoteStyle.textarea} ref={(node) => {
                     callbackForRef(node, index)
