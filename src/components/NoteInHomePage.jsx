@@ -1,27 +1,15 @@
 import note from "./NoteInHomePage.module.css"
 
 function NoteInHomePage() {
-  const data = "first\nsecond\nthird\nfourth\nfifth"
-  // const data = "123456789123456789"
-  
-  function getStringWithReducedInfo(str) {
-    if(str.length > 84) {
-      return str.slice(0,)
-    }
-
-
-
-    const arrOfLines = str.split("\n")
-    console.log(arrOfLines)
-    if(arrOfLines.length > 3) {
-      return (arrOfLines.slice(0,3).join("\n")+"\n...")
-    }
-
-  }
-  
+  // const value = "first\nsecond\nthird\nfourth\nfifth"
+  // const value = "first second third fourth fifth"
+  const value = "Lorem ipsum dolor sit, amet consectetur adipisicing elit\nLorem ipsum dolor sit, amet consectetur adipisicing elit\nLorem ipsum dolor sit, amet consectetur adipisicing elit"
   return (
     <>
-      <textarea className={note.textarea} /*value={getStringWithReducedInfo(data)}*/ value={data} rows={5} />
+      <div className={note.container}>
+        {value}
+      </div>
+      <br />
     </>
   )
 }
