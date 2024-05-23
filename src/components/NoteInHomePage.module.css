@@ -1,33 +1,17 @@
-/* .container {
-  font-size: 28px;
-
-  width: 275px;
-
-  text-decoration: line-through;
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-} */
-
 .textContainer {
-
-  display: flex; 
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-
-
   width: 350px;
   /* background-color: lightblue; */
   border: 2px solid black;
 }
 
-
 .myCheckbox {
-  width: 90px;
-  height: 90px;
+  min-width: 30px;
+  width: 30px;
+
+  
+  height: 30px;
 }
 
