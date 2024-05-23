@@ -1,15 +1,21 @@
 import note from "./NoteInHomePage.module.css"
 
-function NoteInHomePage() {
-  // const value = "first\nsecond\nthird\nfourth\nfifth"
-  // const value = "first second third fourth fifth"
-  const value = "Lorem ipsum dolor sit, amet consectetur adipisicing elit\nLorem ipsum dolor sit, amet consectetur adipisicing elit\nLorem ipsum dolor sit, amet consectetur adipisicing elit"
+import { Checkbox, Text } from "@mantine/core"
+
+const placeholderText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quibusdam reiciendis ipsa est, aliquid illo iste esse qui eum dicta?"
+
+function NoteInHomePage({ lineClamp = 3, size = "xl", value = placeholderText }) {
   return (
     <>
-      <div className={note.container}>
-        {value}
+      <div className={`${note.textContainer}`} >
+
+        <input type="checkbox" className={note.myCheckbox} />
+
+        <Text lineClamp={lineClamp} size={size}>
+          {value}
+        </Text>
+        {/* <Checkbox /> */}
       </div>
-      <br />
     </>
   )
 }

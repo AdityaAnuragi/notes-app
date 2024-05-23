@@ -1,6 +1,5 @@
-.container {
+/* .container {
   font-size: 28px;
-  /* background-color: lightblue; */
 
   width: 275px;
 
@@ -12,4 +11,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+} */
+
+.textContainer {
+
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;
+
+
+  width: 350px;
+  /* background-color: lightblue; */
+  border: 2px solid black;
 }
+
+
+.myCheckbox {
+  width: 90px;
+  height: 90px;
+}
+
