@@ -3,12 +3,15 @@
 // import useThrottle from "./customHooks/useThrottle"
 // import { TooltipButtonWrapper } from "./components/tooltipButton"
 // import { OpenNote } from "./components/OpenNote"
-import { NoteInHomePage } from "./components/NoteInHomePage"
+import { CheckboxAndTextPairInHomePageNote } from "./components/CheckboxAndTextPairInHomePageNote"
 function App() {
   return (
     <>
       {/* <OpenNote /> */}
-      <NoteInHomePage />
+      <CheckboxAndTextPairInHomePageNote />
+      <CheckboxAndTextPairInHomePageNote value="hey there" checkboxData={{hasCheckbox : true , isTicked : false}} />
+      <CheckboxAndTextPairInHomePageNote value="hey there" checkboxData={{hasCheckbox : false , isTicked : false}} />
+      <CheckboxAndTextPairInHomePageNote value="qwertyuiopasdfghjkklzxcvbnmqwertyuiop" />
     </>
   )
 }

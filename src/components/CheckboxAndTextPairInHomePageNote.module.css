@@ -5,6 +5,7 @@
   width: 350px;
   /* background-color: lightblue; */
   /* border: 2px solid black; */
+  margin-bottom: 15px;
 }
 
 .myCheckbox {
@@ -17,5 +18,7 @@
   /* the important rule is necessary here cuz text-decoration property is set to None */
   text-decoration: line-through !important;
   color: grey !important;
+  /* text-wrap: wrap; */
+  overflow-wrap: break-word;
 }
 

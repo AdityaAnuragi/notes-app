@@ -1,10 +1,10 @@
-import note from "./NoteInHomePage.module.css"
+import note from "./CheckboxAndTextPairInHomePageNote.module.css"
 
 import { Text } from "@mantine/core"
 
 const placeholderText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quibusdam reiciendis ipsa est, aliquid illo iste esse qui eum dicta?"
 
-function NoteInHomePage({ lineClamp = 3, size = "xl", value = placeholderText , checkboxData = {hasCheckbox : true , isTicked : true} }) {
+function CheckboxAndTextPairInHomePageNote({ lineClamp = 3, size = "xl", value = placeholderText , checkboxData = {hasCheckbox : true , isTicked : true} }) {
   
   return (
     <>
@@ -27,5 +27,5 @@ function NoteInHomePage({ lineClamp = 3, size = "xl", value = placeholderText , 
 }
 
 export {
-  NoteInHomePage
+  CheckboxAndTextPairInHomePageNote
 }
