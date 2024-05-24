@@ -4,12 +4,18 @@
   align-items: flex-start;
   width: 350px;
   /* background-color: lightblue; */
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
 .myCheckbox {
   min-width: 30px;
   width: 30px;  
   height: 30px;
+}
+
+.mantineTextRootSelector {
+  /* the important rule is necessary here cuz text-decoration property is set to None */
+  text-decoration: line-through !important;
+  color: grey !important;
 }
 
