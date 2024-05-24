@@ -1,0 +1,7 @@
+.container {
+  border: 2px solid black;
+  border-radius: 5px;
+  min-width: 240px;
+  width: 25%;
+  /* flex: 1 auto; */
+}

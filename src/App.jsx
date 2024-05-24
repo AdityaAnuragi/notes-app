@@ -1,17 +1,28 @@
-// import { useEffect, useLayoutEffect, useRef, useState } from "react"
-// import "./App.css"
-// import useThrottle from "./customHooks/useThrottle"
-// import { TooltipButtonWrapper } from "./components/tooltipButton"
-import { OpenNote } from "./components/OpenNote"
-import { CheckboxAndTextPairInHomePageNote } from "./components/CheckboxAndTextPairInHomePageNote"
+// import { OpenNote } from "./components/OpenNote"
+import { NoteInHomePage } from "./components/NoteInHomePage"
 function App() {
   return (
     <>
-      {false && <OpenNote />}
-      <CheckboxAndTextPairInHomePageNote />
-      {/* <CheckboxAndTextPairInHomePageNote value="hey there" checkboxData={{hasCheckbox : true , isTicked : false}} />
-      <CheckboxAndTextPairInHomePageNote value="hey there" checkboxData={{hasCheckbox : false , isTicked : false}} />
-      <CheckboxAndTextPairInHomePageNote value="qwertyuiopasdfghjkklzxcvbnmqwertyuiop" /> */}
+      {/* <OpenNote /> */}
+      <div style={{
+        border : "3px solid red" ,
+        width : "100%",
+
+        display : "flex",        
+        alignItems : "flex-start",
+        flexFlow : "row wrap",
+        alignContent : "flex-start",
+      }} 
+      >
+        <NoteInHomePage />
+        <NoteInHomePage elementsInHomeNote={1} />
+        <NoteInHomePage elementsInHomeNote={4} />
+        <NoteInHomePage elementsInHomeNote={2} />
+        <NoteInHomePage elementsInHomeNote={2} />
+        <NoteInHomePage elementsInHomeNote={2} />
+        <NoteInHomePage elementsInHomeNote={2} />
+        <NoteInHomePage elementsInHomeNote={2} />
+      </div>
     </>
   )
 }
