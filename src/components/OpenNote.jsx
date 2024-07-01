@@ -242,7 +242,7 @@ function OpenNote() {
       addNewItemTextAreaRef.current.style.height = "0px"
       addNewItemTextAreaRef.current.style.height = `${(addNewItemTextAreaRef.current.scrollHeight) + 4}px`
     }
-  }, [data, pointer])
+  })
 
   function handleUndo() {
     // console.log(`Inside handleUndo, Pointer is ${pointer}`)

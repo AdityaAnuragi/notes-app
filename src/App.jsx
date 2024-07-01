@@ -14,6 +14,7 @@ function App() {
         alignContent : "flex-start",
       }} 
       >
+        {/* <OpenNote /> */}
         <NoteInHomePage />
         <NoteInHomePage elementsInHomeNote={1} />
         <NoteInHomePage elementsInHomeNote={4} />
