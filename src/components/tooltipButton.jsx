@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 import openNoteStyle from "./OpenNote.module.css"
