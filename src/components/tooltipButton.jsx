@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 import { Tooltip } from "@mantine/core"
 import { useEffect, useState } from "react"
 import openNoteStyle from "./OpenNote.module.css"
@@ -52,6 +50,7 @@ function TooltipButtonWrapper({ shortcut, position = "top", offset = -13, button
       }
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (
