@@ -242,7 +242,9 @@ function OpenNote() {
       addNewItemTextAreaRef.current.style.height = "0px"
       addNewItemTextAreaRef.current.style.height = `${(addNewItemTextAreaRef.current.scrollHeight) + 4}px`
     }
-  })
+    // I disabled the linting for the line below cuz it'll still work and it makes sense
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data,pointer])
 
   function handleUndo() {
     // console.log(`Inside handleUndo, Pointer is ${pointer}`)
