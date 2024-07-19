@@ -1,28 +1,15 @@
-import { OpenNote } from "./components/OpenNote"
-// import { NoteInHomePage } from "./components/NoteInHomePage"
+import { NoteInHomePage } from "./components/NoteInHomePage"
+import styles from "./App.module.css"
 function App() {
+
   return (
     <>
-      <OpenNote />
-      {/* <div style={{
-        border : "3px solid red" ,
-        width : "100%",
-
-        display : "flex",        
-        alignItems : "flex-start",
-        flexFlow : "row wrap",
-        alignContent : "flex-start",
-      }} 
-      >
-        <NoteInHomePage />
+      <div className={styles.container} >
         <NoteInHomePage elementsInHomeNote={1} />
+        <NoteInHomePage elementsInHomeNote={2} />
+        <NoteInHomePage elementsInHomeNote={3} />
         <NoteInHomePage elementsInHomeNote={4} />
-        <NoteInHomePage elementsInHomeNote={2} />
-        <NoteInHomePage elementsInHomeNote={2} />
-        <NoteInHomePage elementsInHomeNote={2} />
-        <NoteInHomePage elementsInHomeNote={2} />
-        <NoteInHomePage elementsInHomeNote={2} />
-      </div> */}
+      </div>
     </>
   )
 }
