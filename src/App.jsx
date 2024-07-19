@@ -9,7 +9,15 @@ function App() {
         <NoteInHomePage elementsInHomeNote={2} />
         <NoteInHomePage elementsInHomeNote={3} />
         <NoteInHomePage elementsInHomeNote={4} />
+        <NoteInHomePage elementsInHomeNote={5} />
+        <NoteInHomePage elementsInHomeNote={6} />
+        <NoteInHomePage elementsInHomeNote={3} />
+
+        <div className={styles.fillSpace} ></div>
+        <div className={styles.fillSpace} ></div>
+        <div className={styles.fillSpace} ></div>
       </div>
+
     </>
   )
 }

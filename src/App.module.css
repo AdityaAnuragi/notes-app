@@ -1,11 +1,34 @@
 .container {
-  border : 3px solid red ;
+  /* border : 3px solid red ; */
   width : 100%;
-  height : 600px;
+  height :1300px;
 
-  display : flex;        
-  align-items : flex-start;
+  display : flex;     
   flex-flow : column wrap;
+  align-items : flex-start;
   align-content : flex-start; 
+}
+
+.fillSpace {
+  width: 0px;
+  min-height: 0px;
+  flex-grow: 1;
+  background-color: grey;
+  height: 100%;
+}
+
+.fillSpace:nth-child(3n+1) {
+  background-color: blue;
+  order: 1;
+}
+
+.fillSpace:nth-child(3n+2) {
+  background-color: blue;
+  order: 2;
+}
+
+.fillSpace:nth-child(3n+3) {
+  background-color: blue;
+  order: 3;
 }
 
