@@ -1,7 +1,7 @@
 .container {
   /* border : 3px solid red ; */
   width : 100%;
-  height :1300px;
+  height :2000px;
 
   display : flex;     
   flex-flow : column wrap;
@@ -17,18 +17,22 @@
   height: 100%;
 }
 
-.fillSpace:nth-child(3n+1) {
-  background-color: blue;
-  order: 1;
+
+@media screen and (min-width : 425px) {
+  .fillSpace {
+    order: 1;
+  }
 }
 
-.fillSpace:nth-child(3n+2) {
-  background-color: blue;
-  order: 2;
+@media screen and (min-width : 1024px) {
+  .fillSpace:nth-child(odd) {
+    order: 1;
+  }
+  
+  .fillSpace:nth-child(even) {
+    order: 2;
+  }
 }
 
-.fillSpace:nth-child(3n+3) {
-  background-color: blue;
-  order: 3;
-}
+
 

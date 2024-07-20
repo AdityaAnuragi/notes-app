@@ -7,7 +7,8 @@
   /* Note for future me---- */
   /* the min width is 220px as the container in NoteInHomePage component has a min width of 240px so this keeps it matching
   the 20px was cut from 240px just for good measure... though I feel like I could probbaly keep it at 240px */
-  min-width: 220px;
+  
+  /* min-width: 220px; */
   width: 100%;
 
 

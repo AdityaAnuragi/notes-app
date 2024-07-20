@@ -1,10 +1,10 @@
 .container {
   border: 2px solid black;
   border-radius: 5px;
-  min-width: 240px;
-  width: 33%;
+  min-width: 0px;
+  /* width: 33%; */
 
-  
+
   margin-right: 2px;
   margin-left: 2px;
   margin-bottom: 2px;
@@ -13,14 +13,48 @@
 
 }
 
-.container:nth-child(3n+1) {
-  order: 1;
+
+@media screen and (min-width : 425px) {
+  .container {
+    width: 50%;
+  }
+  
+  .container:nth-child(odd) {
+    order: 1;
+  }
+  
+  .container:nth-child(even) {
+    order: 2;
+  }
+  
+}
+@media screen and (min-width : 1024px) {
+
+  .container {
+    width: 33%;
+  }
+
+  .container:nth-child(3n+1) {
+    order: 1;
+  }
+
+  .container:nth-child(3n+2) {
+    order: 2;
+  }
+
+  .container:nth-child(3n+3) {
+    order: 3;
+  }
+
 }
 
-.container:nth-child(3n+2) {
-  order : 2
+/* @media screen and (min-width : 1024px)  {
+  .container {
+    background-color: blue;
+  }
 }
-
-.container:nth-child(3n+3) {
-  order : 3
-}
+@media screen and (min-width : 800px)  {
+  .container {
+    background-color: red;
+  }
+} */
