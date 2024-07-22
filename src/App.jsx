@@ -1,18 +1,20 @@
 import { NoteInHomePage } from "./components/NoteInHomePage"
 import styles from "./App.module.css"
-import { useLayoutEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 function App() {
-
+  const [n , setN] = useState(1)
+  console.log(n)
   const containerRef = useRef()
 
   function totalColumnsOnScreen() {
-    const windowWidth = window.innerWidth
-
-    if(windowWidth <= 425) {
+    // console.log(document.getElementsByTagName("html")[0].clientWidth)
+    const windowWidth = document.getElementsByTagName("html")[0].clientWidth
+    console.log(`inside, ${windowWidth}`)
+    if(windowWidth < 425) {
       return 1
     }
 
-    else if(windowWidth <= 1024) {
+    else if(windowWidth < 1024) {
       return 2
     }
 
@@ -55,12 +57,16 @@ function App() {
 
     console.log(`Max ht required is ${maxHeightOfAllColumns}`)
 
-    console.log(window.innerWidth)
-    console.log(totalColumnsOnScreen())
-    
+    console.log(`window width is ${window.innerWidth}`)
+    console.log(`cols : ${totalColumns}`)
+    console.log("")
 
     containerRef.current.style.height = `${maxHeightOfAllColumns+60}px`
   })
+
+  useEffect(() => {
+    window.addEventListener("resize",() => setN((n) => n+1))
+  },[])
 
   return (
     <>
