@@ -3,13 +3,13 @@ import styles from "./App.module.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 function App() {
   const [n , setN] = useState(1)
-  console.log(n)
+  // console.log(n)
   const containerRef = useRef()
 
   function totalColumnsOnScreen() {
     // console.log(document.getElementsByTagName("html")[0].clientWidth)
     const windowWidth = document.getElementsByTagName("html")[0].clientWidth
-    console.log(`inside, ${windowWidth}`)
+    // console.log(`inside, ${windowWidth}`)
     if(windowWidth < 425) {
       return 1
     }
@@ -47,7 +47,7 @@ function App() {
       let j = i
       let heightOfColumn = 0
       while(j < arrOfNotesOnly.length) {
-        console.log(arrOfNotesOnly[j] , arrOfNotesOnly[j].clientHeight)
+        // console.log(arrOfNotesOnly[j] , arrOfNotesOnly[j].clientHeight)
         heightOfColumn  += arrOfNotesOnly[j].clientHeight
         j+=totalColumns
       }
@@ -55,11 +55,11 @@ function App() {
       i+=1
     }
 
-    console.log(`Max ht required is ${maxHeightOfAllColumns}`)
+    // console.log(`Max ht required is ${maxHeightOfAllColumns}`)
 
-    console.log(`window width is ${window.innerWidth}`)
-    console.log(`cols : ${totalColumns}`)
-    console.log("")
+    // console.log(`window width is ${window.innerWidth}`)
+    // console.log(`cols : ${totalColumns}`)
+    // console.log("")
 
     containerRef.current.style.height = `${maxHeightOfAllColumns+60}px`
   })
