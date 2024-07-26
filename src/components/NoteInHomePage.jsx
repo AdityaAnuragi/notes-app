@@ -33,7 +33,7 @@ export function NoteInHomePage({ completeHomePageNoteData }) {
     <>
       <div className={styles.container} >
         {arr}
-        {completeHomePageNoteData.length > 3 && "..."} 
+        {completeHomePageNoteData.length > 3 && <h3>...</h3>} 
       </div>
     </>
   )
