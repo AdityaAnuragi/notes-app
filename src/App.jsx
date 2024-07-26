@@ -74,7 +74,19 @@ function App() {
       let heightOfColumn = 0
       while (j < arrOfNotesOnly.length) {
         // console.log(arrOfNotesOnly[j] , arrOfNotesOnly[j].clientHeight)
-        heightOfColumn += arrOfNotesOnly[j].clientHeight
+
+        let topBorder =  window.getComputedStyle(arrOfNotesOnly[j]).getPropertyValue("border-top-width")
+        topBorder = Math.round(parseFloat(topBorder.slice(topBorder.length*-1,-2)))
+
+        let bottomBorder =  window.getComputedStyle(arrOfNotesOnly[j]).getPropertyValue("border-bottom-width")
+        bottomBorder = Math.round(parseFloat(bottomBorder.slice(bottomBorder.length*-1,-2)))
+        
+        let marginBottom = window.getComputedStyle(arrOfNotesOnly[j]).getPropertyValue("margin-bottom")
+        marginBottom = Math.round(parseFloat(marginBottom.slice(marginBottom.length*-1,-2)))
+
+        // console.log(topBorder ,bottomBorder,marginBottom)
+
+        heightOfColumn += (arrOfNotesOnly[j].clientHeight + topBorder + bottomBorder + marginBottom)
         j += totalColumns
       }
       maxHeightOfAllColumns = heightOfColumn > maxHeightOfAllColumns ? heightOfColumn : maxHeightOfAllColumns
@@ -82,12 +94,10 @@ function App() {
     }
 
     // console.log(`Max ht required is ${maxHeightOfAllColumns}`)
-
-    // console.log(`window width is ${window.innerWidth}`)
     // console.log(`cols : ${totalColumns}`)
     // console.log("")
 
-    containerRef.current.style.height = `${maxHeightOfAllColumns + 100}px`
+    containerRef.current.style.height = `${maxHeightOfAllColumns + 60}px`
   })
 
   useEffect(() => {
