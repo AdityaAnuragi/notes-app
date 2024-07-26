@@ -13,10 +13,11 @@ export function NoteInHomePage({ completeHomePageNoteData }) {
   //   { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
   //   { category: { isCheckBox: false, isChecked: false }, data: "regular note" }
   // ]
-
-  for( const note of completeHomePageNoteData ) {
-    arr.push( <CheckboxAndTextPairInHomePageNote value={note.data} checkboxData={{hasCheckbox : note.category.isCheckBox,isTicked : note.category.isChecked}} /> )
-  }
+  
+  completeHomePageNoteData.map((note,index) => {
+    const {data,category} = note
+    return arr.push( <CheckboxAndTextPairInHomePageNote key={index} value={data} checkboxData={{hasCheckbox : category.isCheckBox, isTicked : category.isChecked}} /> )
+  })
 
   return (
     <>
