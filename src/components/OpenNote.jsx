@@ -55,7 +55,7 @@ function OpenNote() {
 
   function updatingWasredojustclickedHistoryPointer() {
     wasRedoJustClicked.current = false
-    // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d
+    // if filter history is [a,b,c,d,e,f,g,h] and pointer is -6 (ie on c) then we delete everything after d, the d is gonna have the latest state in it's place instead
     const isEqualLength = filteredHistory.current.length === history.current.length
     filteredHistory.current = filteredHistory.current.slice(0, pointer + filteredHistory.current.length + 2) // abcd
     if (!isEqualLength) {
