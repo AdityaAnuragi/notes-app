@@ -91,8 +91,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("resize", () => setN((prev) => {
-      console.log(n)
-      return prev+1
+      return (prev+1)*n
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
