@@ -87,7 +87,7 @@ function App() {
     // console.log(`cols : ${totalColumns}`)
     // console.log("")
 
-    containerRef.current.style.height = `${maxHeightOfAllColumns + 60}px`
+    containerRef.current.style.height = `${maxHeightOfAllColumns + 100}px`
   })
 
   useEffect(() => {
