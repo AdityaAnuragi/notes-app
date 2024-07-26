@@ -2,9 +2,7 @@ import { CheckboxAndTextPairInHomePageNote } from "./CheckboxAndTextPairInHomePa
 import styles from "./NoteInHomePage.module.css"
 
 export function NoteInHomePage({ completeHomePageNoteData }) {
-  const arr = []
-
-  // for(let i = 1 ; i <= elementsInHomeNote ; i++) {
+    // for(let i = 1 ; i <= elementsInHomeNote ; i++) {
   //   arr.push(<CheckboxAndTextPairInHomePageNote key={i} />)
   // }
 
@@ -14,9 +12,9 @@ export function NoteInHomePage({ completeHomePageNoteData }) {
   //   { category: { isCheckBox: false, isChecked: false }, data: "regular note" }
   // ]
   
-  completeHomePageNoteData.map((note,index) => {
+  const arr = completeHomePageNoteData.map((note,index) => {
     const {data,category} = note
-    return arr.push( <CheckboxAndTextPairInHomePageNote key={index} value={data} checkboxData={{hasCheckbox : category.isCheckBox, isTicked : category.isChecked}} /> )
+    return <CheckboxAndTextPairInHomePageNote key={index} value={data} checkboxData={{hasCheckbox : category.isCheckBox, isTicked : category.isChecked}} />
   })
 
   return (
