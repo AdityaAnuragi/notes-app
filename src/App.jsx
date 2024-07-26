@@ -10,7 +10,8 @@ function App() {
     [
       { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
       { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
-      { category: { isCheckBox: false, isChecked: false }, data: "regular note" }
+      { category: { isCheckBox: false, isChecked: false }, data: "regular note" },
+      { category: { isCheckBox: false, isChecked: false }, data: "A fourth item that is hidden" }
     ],
     [
       { category: { isCheckBox: false, isChecked: false }, data: "second note" }
