@@ -10,13 +10,13 @@ function CheckboxAndTextPairInHomePageNote({ lineClamp = 3, size = "xl", value =
     <>
       <div className={`${note.textContainer}`} >
 
-        {checkboxData.hasCheckbox && <input type="checkbox" checked={checkboxData.isTicked} className={note.myCheckbox} readOnly />}
+        {checkboxData.hasCheckbox && <input type="checkbox" checked={checkboxData.isTicked} className={`${note.myCheckbox} ${note.unselectable} `} readOnly />}
 
         <Text 
           lineClamp={lineClamp} 
           size={size} 
           classNames={{
-            root : checkboxData.isTicked ? note.mantineTextRootSelector : null
+            root : checkboxData.isTicked ? `${note.mantineTextRootSelector} ${note.unselectable}` : note.unselectable
           }}
         >
           {value}

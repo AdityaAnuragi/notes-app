@@ -29,5 +29,9 @@
   color: grey !important;
   /* text-wrap: wrap; */
   overflow-wrap: break-word;
+  
 }
 
+.unselectable {
+  user-select: none;
+}

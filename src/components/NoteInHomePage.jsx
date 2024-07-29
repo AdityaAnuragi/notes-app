@@ -33,7 +33,7 @@ export function NoteInHomePage({ completeHomePageNoteData }) {
     <>
       <div className={styles.container} >
         {arr}
-        {completeHomePageNoteData.length > 3 && <h3>...</h3>} 
+        {completeHomePageNoteData.length > 3 && <h3 className={styles.unselectable} >...</h3>} 
       </div>
     </>
   )

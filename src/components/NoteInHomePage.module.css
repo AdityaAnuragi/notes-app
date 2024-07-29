@@ -54,3 +54,7 @@
   }
 
 }
+
+.unselectable {
+  user-select: none;
+}
