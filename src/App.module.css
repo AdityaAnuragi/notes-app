@@ -33,6 +33,11 @@
   transform: scale(0.93);
 }
 
+.unselectable {
+  user-select: none;
+}
+
+
 @media screen and (min-width : 425px) {
   .fillSpace {
     order: 1;
