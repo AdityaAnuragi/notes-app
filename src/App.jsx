@@ -1,4 +1,5 @@
 import { NoteInHomePage } from "./components/NoteInHomePage"
+import { OpenNote } from "./components/OpenNote"
 import styles from "./App.module.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 function App() {
@@ -109,6 +110,7 @@ function App() {
 
   return (
     <>
+      {true && <OpenNote />}
       <button className={`${styles.newNoteButton} ${styles.unselectable} `} onClick={addNewNote} >New Note</button>
       <div className={styles.container} ref={containerRef} >
         
