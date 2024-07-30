@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import  openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
-function OpenNote() {
+export function OpenNote() {
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
     { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
@@ -404,8 +404,4 @@ function OpenNote() {
   //     </TooltipButton>  
   //   </>
   // )
-}
-
-export {
-  OpenNote
 }
