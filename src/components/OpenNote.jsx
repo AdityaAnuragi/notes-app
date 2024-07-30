@@ -302,8 +302,8 @@ function OpenNote() {
   }, [])
   const aVar = useRef();
   return (
-    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar}>
-      <div className={openNoteStyle.individualNoteContainer} >
+    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onClick={() => console.log("clicked")} >
+      <div className={openNoteStyle.individualNoteContainer} onClick={(e) => e.stopPropagation()}  >
         <div className={openNoteStyle.elementContainer}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
