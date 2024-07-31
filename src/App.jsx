@@ -19,6 +19,8 @@ function App() {
     ]
   ])
 
+  const [openNoteIndex , setOpenNoteIndex] = useState(-1)
+
   const [n, setN] = useState(1)
   // console.log(n)
   const containerRef = useRef()
@@ -110,12 +112,12 @@ function App() {
 
   return (
     <>
-      {true && <OpenNote />}
+      {(openNoteIndex !== -1) && <OpenNote />}
       <button className={`${styles.newNoteButton} ${styles.unselectable} `} onClick={addNewNote} >New Note</button>
       <div className={styles.container} ref={containerRef} >
         
         {allNotes && allNotes.map((note,index) => {
-          return <NoteInHomePage key={index} completeHomePageNoteData={note} />
+          return <NoteInHomePage key={index} completeHomePageNoteData={note} onClickCallback={() => console.log(`clicked with ${index}`)} />
         })}
 
         <div className={styles.fillSpace} ></div>

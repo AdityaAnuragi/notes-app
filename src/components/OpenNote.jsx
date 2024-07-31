@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import  openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
-export function OpenNote() {
+export function OpenNote(  ) {
   const [data, setData] = useState([
     { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
     { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
@@ -302,7 +302,7 @@ export function OpenNote() {
   }, [])
   const aVar = useRef();
   return (
-    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onClick={() => console.log("clicked")} >
+    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onClick={() => console.log("clicked bg")} >
       <div className={openNoteStyle.individualNoteContainer} onClick={(e) => e.stopPropagation()}  >
         <div className={openNoteStyle.elementContainer}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {

@@ -1,7 +1,7 @@
 import { CheckboxAndTextPairInHomePageNote } from "./CheckboxAndTextPairInHomePageNote";
 import styles from "./NoteInHomePage.module.css"
 
-export function NoteInHomePage({ completeHomePageNoteData }) {
+export function NoteInHomePage({ completeHomePageNoteData , onClickCallback }) {
   
   const loopUpperLimit = (completeHomePageNoteData.length > 3) ? 3 : completeHomePageNoteData.length
   const arr = []
@@ -12,7 +12,7 @@ export function NoteInHomePage({ completeHomePageNoteData }) {
 
   return (
     <>
-      <div className={styles.container} >
+      <div className={styles.container} onClick={onClickCallback} >
         {arr}
         {completeHomePageNoteData.length > 3 && <h3 className={styles.unselectable} >...</h3>} 
       </div>
