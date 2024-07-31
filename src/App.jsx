@@ -110,6 +110,10 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    console.log("A project by Aditya Anuragi")
+  },[])
+
   return (
     <>
       {(openNoteIndex !== -1) && <OpenNote initialState={allNotes[openNoteIndex]} onClickCallbackToCloseAnOpenNote={() => setOpenNoteIndex(-1)} />}

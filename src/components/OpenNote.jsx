@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
-import  openNoteStyle from "./OpenNote.module.css"
+import openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
-export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
+export function OpenNote({ initialState, onClickCallbackToCloseAnOpenNote }) {
   const [data, setData] = useState(initialState)
 
   const [pointer, setPointer] = useState(-1)
@@ -239,8 +239,8 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
       addNewItemTextAreaRef.current.style.height = `${(addNewItemTextAreaRef.current.scrollHeight) + 4}px`
     }
     // I disabled the linting for the line below cuz it'll still work and it makes sense
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data,pointer])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, pointer])
 
   function handleUndo() {
     // console.log(`Inside handleUndo, Pointer is ${pointer}`)
@@ -293,21 +293,21 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
   // console.log("")
 
   useEffect(() => {
-    console.log("A project by Aditya Anuragi")
 
     function closeOnEsc(e) {
-      if(e.key === "Escape") {
+      if (e.key === "Escape") {
         onClickCallbackToCloseAnOpenNote()
       }
     }
 
-    window.addEventListener("keydown",closeOnEsc)
+    window.addEventListener("keydown", closeOnEsc)
 
     return () => {
-      window.removeEventListener("keydown",closeOnEsc)
+      window.removeEventListener("keydown", closeOnEsc)
     }
 
     // console.log(idElementContainerRed.current.children[0].children[0].children)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const aVar = useRef();
   return (
@@ -317,7 +317,7 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
             return (
               <div className={openNoteStyle.textAreaContainer} key={index} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }} >
-                <div className={openNoteStyle.inputAndTextAreaSubWrapper} style={{ display: "flex", alignItems: "flex-start" , flexGrow : "1" }}>
+                <div className={openNoteStyle.inputAndTextAreaSubWrapper} style={{ display: "flex", alignItems: "flex-start", flexGrow: "1" }}>
                   {element.category.isCheckBox && <input className={openNoteStyle.input} type="checkbox" checked={filteredHistory.current[filteredHistory.current.length + pointer][index].category.isChecked} onChange={() => handleCheckChange(index)} />}
                   <textarea style={getStyles(index)} value={filteredHistory.current[filteredHistory.current.length + pointer][index].data} className={openNoteStyle.textarea} ref={(node) => {
                     callbackForRef(node, index)
@@ -347,7 +347,7 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
                     }}
                     logoName="fa-solid fa-trash"
                     index={index}
-                    textareas = {textareas}
+                    textareas={textareas}
                   />
                   {/* <button className="listItemButtons roundedButton" onClick={() => deleteElement(index)} ><i className="fa-solid fa-trash"></i></button> */}
                 </div>
@@ -370,7 +370,7 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
               onClick: () => handleCtrlSlash(indexOfCurrentlyFocusedElement.current)
             }}
             logoName="fa-regular fa-square-check"
-            textareas = {textareas}
+            textareas={textareas}
           />
           <div className={openNoteStyle.undoRedoContainer}>
 
@@ -384,7 +384,7 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
                 style: { cursor: (pointer * -1 === filteredHistory.current.length) ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-left"
-              textareas = {textareas}
+              textareas={textareas}
             />
 
             <TooltipButtonWrapper
@@ -396,7 +396,7 @@ export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
                 style: { cursor: pointer === -1 ? "not-allowed" : "auto" }
               }}
               logoName="fa-solid fa-rotate-right"
-              textareas = {textareas}
+              textareas={textareas}
             />
 
             {/* Redo button */}
