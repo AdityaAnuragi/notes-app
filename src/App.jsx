@@ -116,7 +116,14 @@ function App() {
 
   return (
     <>
-      {(openNoteIndex !== -1) && <OpenNote initialState={allNotes[openNoteIndex]} onClickCallbackToCloseAnOpenNote={() => setOpenNoteIndex(-1)} />}
+      {(openNoteIndex !== -1) && 
+        <OpenNote 
+          initialState={allNotes[openNoteIndex]} 
+          setOpenNoteIndex={setOpenNoteIndex}
+          noteIndex={openNoteIndex}
+          setAllNotes={setAllNotes}
+        />
+      }
       <button className={`${styles.newNoteButton} ${styles.unselectable} `} onClick={addNewNote} >New Note</button>
       <div className={styles.container} ref={containerRef} >
         
