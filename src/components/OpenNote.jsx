@@ -2,12 +2,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import  openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
-export function OpenNote(  ) {
-  const [data, setData] = useState([
-    { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
-    { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
-    { category: { isCheckBox: false, isChecked: false }, data: "regular note" }
-  ])
+export function OpenNote( {initialState} ) {
+  const [data, setData] = useState(initialState)
 
   const [pointer, setPointer] = useState(-1)
   // this tells which snapshot we're currently at out of all the snapshots in the history, -1 means the most recent
