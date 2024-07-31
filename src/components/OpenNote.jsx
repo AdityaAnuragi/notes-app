@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import  openNoteStyle from "./OpenNote.module.css"
 import useThrottle from "../customHooks/useThrottle"
 import { TooltipButtonWrapper } from "./tooltipButton"
-export function OpenNote( {initialState} ) {
+export function OpenNote( {initialState , onClickCallbackToCloseAnOpenNote } ) {
   const [data, setData] = useState(initialState)
 
   const [pointer, setPointer] = useState(-1)
@@ -294,11 +294,24 @@ export function OpenNote( {initialState} ) {
 
   useEffect(() => {
     console.log("A project by Aditya Anuragi")
+
+    function closeOnEsc(e) {
+      if(e.key === "Escape") {
+        onClickCallbackToCloseAnOpenNote()
+      }
+    }
+
+    window.addEventListener("keydown",closeOnEsc)
+
+    return () => {
+      window.removeEventListener("keydown",closeOnEsc)
+    }
+
     // console.log(idElementContainerRed.current.children[0].children[0].children)
   }, [])
   const aVar = useRef();
   return (
-    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onClick={() => console.log("clicked bg")} >
+    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onClick={onClickCallbackToCloseAnOpenNote} >
       <div className={openNoteStyle.individualNoteContainer} onClick={(e) => e.stopPropagation()}  >
         <div className={openNoteStyle.elementContainer}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
@@ -388,7 +401,7 @@ export function OpenNote( {initialState} ) {
 
             {/* Redo button */}
           </div>
-          <button className={openNoteStyle.button}>Close</button>
+          <button className={openNoteStyle.button} onClick={onClickCallbackToCloseAnOpenNote} >Close</button>
         </footer>
       </div>
     </div>
