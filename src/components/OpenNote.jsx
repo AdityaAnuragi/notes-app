@@ -319,10 +319,7 @@ export function OpenNote({ initialState, setOpenNoteIndex, noteIndex, setAllNote
   })
   const aVar = useRef();
   return (
-    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onMouseDown={() => {
-      console.log("clicked")
-      handleClosingOfNote()
-    }} >
+    <div className={openNoteStyle.spanningTheWholeViewWidthAndHeightWrapper} ref={aVar} onMouseDown={handleClosingOfNote} >
       <div className={openNoteStyle.individualNoteContainer} onMouseDown={(e) => e.stopPropagation()}  >
         <div className={openNoteStyle.elementContainer}>
           {filteredHistory.current[filteredHistory.current.length + pointer] && filteredHistory.current[filteredHistory.current.length + pointer].map((element, index) => {
