@@ -3,7 +3,7 @@ import { OpenNote } from "./components/OpenNote"
 import styles from "./App.module.css"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 function App() {
-
+  //   made a small change to the default state
   const [allNotes , setAllNotes] = useState([
     [
       { category: { isCheckBox: true, isChecked: true }, data: "Do the dishes" },
