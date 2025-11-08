@@ -6,16 +6,18 @@ function App() {
 
   const [allNotes , setAllNotes] = useState([
     [
-      { category: { isCheckBox: false, isChecked: false }, data: "Sample data" }
+      { category: { isCheckBox: true, isChecked: true }, data: "Do the dishes" },
+      { category: { isCheckBox: true, isChecked: false }, data: "Go for a walk" }
     ],
     [
-      { category: { isCheckBox: false, isChecked: false }, data: "Hold ctrl to see shortcut" },
-      { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
-      { category: { isCheckBox: false, isChecked: false }, data: "regular note" },
-      { category: { isCheckBox: false, isChecked: false }, data: "A fourth item that is hidden" }
+      { category: { isCheckBox: false, isChecked: false }, data: "Hello there" },
+      // { category: { isCheckBox: true, isChecked: true }, data: "this is ticked" },
+      // { category: { isCheckBox: false, isChecked: false }, data: "regular note" },
+      // { category: { isCheckBox: false, isChecked: false }, data: "A fourth item that is hidden" }
     ],
     [
-      { category: { isCheckBox: false, isChecked: false }, data: "second note" }
+      { category: { isCheckBox: true, isChecked: false }, data: "This is a checkbox item" },
+      { category: { isCheckBox: false, isChecked: false }, data: "whereas this is just a regular description" }
     ]
   ])
 
